@@ -21,9 +21,9 @@
     <div class="mdl-layout__drawer">
       <span class="mdl-layout-title"><img src="/images/brav_logo.png" width="50%" /></span>
       <div class="mdl-navigation">
-        <div class="mdl-navigation__link" href="">Mediator A <span id="mediator_status"> (offline) </span></div>
-        <div class="mdl-navigation__link" href="">Client A <span id="clientA_status"> (offline) </span></div>
-        <div class="mdl-navigation__link" href="">Client B <span id="clientB_status"> (offline) </span></div>
+        <div class="mdl-navigation__link" href="">Mediator A <span id="clientA_status"> (offline) </span></div>
+        <div class="mdl-navigation__link" href="">Client A <span id="clientB_status"> (offline) </span></div>
+        <div class="mdl-navigation__link" href="">Client B <span id="clientC_status"> (offline) </span></div>
       </div>
 
 
@@ -86,6 +86,7 @@
 					console.log(id);
 					setInterval(callFirstPerson, 2000);
 					setInterval(callSecondPerson, 2000);
+					setOnlineStatus('A', 'online');
 				});
 
 				peer.on('connection', function(conn) {
@@ -117,11 +118,6 @@
 					});
 				});
 
-			/*	$('#call').click(function() {
-					var call = peer.call($('#peerId').val(), window.localStream);
-				});
-			*/
-
 				function init() {
 					navigator.getUserMedia({audio: true, video: true}, function(stream) {
 
@@ -140,12 +136,14 @@
 							conn.on('open', function() {
   							//conn.send('hi!');
 								BinCall = true;
+								setOnlineStatus('B', 'online');
+
 							});
 
 							conn.on('close', function() {
 								BinCall = false;
+								setOnlineStatus('B', 'offline');
 							});
-
 
 					}
 
@@ -158,12 +156,18 @@
 							conn.on('open', function() {
   							//conn.send('hi!');
 								CinCall = true;
+								setOnlineStatus('C', 'online');
 							});
 
 							conn.on('close', function() {
 								CinCall = false;
+								setOnlineStatus('C', 'offline');
 							});
 					}
+				}
+
+				function setOnlineStatus(client, status) {
+					$('#client' + client +'_status').text('(' + status + ')');
 				}
 
 			});
