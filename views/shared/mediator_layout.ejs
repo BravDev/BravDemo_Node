@@ -1,0 +1,176 @@
+<!doctype html>
+<html>
+	<head>
+
+    <title>Brav - Mediator</title>
+    <meta charset="utf-8" />
+    <!-- include Peer JS and JQuery -->
+		<script src="http://cdn.peerjs.com/0.3/peer.js"></script>
+		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <!-- include Material Design Lite -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.1/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.1.1/material.min.js"></script>
+
+
+	</head>
+
+	<body>
+    <!-- Fixed Drawer on the right side -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
+    <div class="mdl-layout__drawer">
+      <span class="mdl-layout-title"><img src="/images/brav_logo.png" width="50%" /></span>
+      <div class="mdl-navigation">
+        <div class="mdl-navigation__link" href="">Mediator A <span id="mediator_status"> (offline) </span></div>
+        <div class="mdl-navigation__link" href="">Client A <span id="clientA_status"> (offline) </span></div>
+        <div class="mdl-navigation__link" href="">Client B <span id="clientB_status"> (offline) </span></div>
+      </div>
+
+
+
+      <!-- Floating Multiline Textfield -->
+      <form action="#">
+        <div class="mdl-textfield mdl-js-textfield">
+          <textarea class="mdl-textfield__input" type="text" rows= "5" id="sample5" ></textarea>
+          <label class="mdl-textfield__label" for="sample5">Write your mediation checklist</label>
+        </div>
+      </form>
+
+      <div class="chat">
+        <!-- Simple Textfield -->
+        <form action="#">
+          <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="text" id="sample1">
+            <label class="mdl-textfield__label" for="sample1">Type to chat</label>
+          </div>
+
+          <!-- Raised button -->
+          <button class="mdl-button mdl-js-button mdl-button--raised">
+            Send
+          </button>
+        </form>
+      </div>
+    </div>
+    <main class="mdl-layout__content">
+      <div class="page-content">
+        <%-body %>
+      </div>
+    </main>
+    </div>
+
+    <script>
+
+			navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+      var id = '<%= id %>';
+      var clientA = id.substr(0, 5);
+			var clientB = id.substr(5, 5);
+			var clientC = id.substr(10, 5);
+
+			var BinCall = false;
+			var CinCall = false;
+			//log the id's
+			console.log(clientA);
+			console.log(clientB);
+			console.log(clientC);
+
+			$(document).ready(function() {
+
+				var peer = new Peer(clientA, {host: 'localhost', port: 9000, path: '../api'});
+
+				//set my stream
+				init();
+
+				//events
+				peer.on('open', function(id) {
+					//$("#myId").text(id);
+					console.log(id);
+					setInterval(callFirstPerson, 2000);
+					setInterval(callSecondPerson, 2000);
+				});
+
+				peer.on('connection', function(conn) {
+					conn.on('data', function(data){
+						alert(data);
+					});
+				});
+
+
+				peer.on('call', function(call) {
+					call.answer(window.localStream);
+
+					 if (window.existingCall) {
+						window.existingCall.close();
+					 }
+
+					call.on('stream', function(stream){
+						$('#their-video').prop('src', URL.createObjectURL(stream));
+					 });
+
+					 window.existingCall = call;
+				});
+
+
+				$('#send').click(function() {
+					var conn = peer.connect($('#peerId').val());
+					conn.on('open', function(){
+						conn.send($('#message').val());
+					});
+				});
+
+			/*	$('#call').click(function() {
+					var call = peer.call($('#peerId').val(), window.localStream);
+				});
+			*/
+
+				function init() {
+					navigator.getUserMedia({audio: true, video: true}, function(stream) {
+
+						$('#my-video').prop('src', URL.createObjectURL(stream));
+						window.localStream = stream;
+						}, function() {
+							 alert('error while init');
+						});
+					}
+
+				function callFirstPerson() {
+					console.log('call attemp');
+					if(BinCall == false) {
+						var call = peer.call(clientB, window.localStream);
+						var conn = peer.connect(clientB);
+							conn.on('open', function() {
+  							//conn.send('hi!');
+								BinCall = true;
+							});
+
+							conn.on('close', function() {
+								BinCall = false;
+							});
+
+
+					}
+
+				}
+
+				function callSecondPerson() {
+					if(CinCall == false) {
+						var call = peer.call(clientC, window.localStream);
+						var conn = peer.connect(clientC);
+							conn.on('open', function() {
+  							//conn.send('hi!');
+								CinCall = true;
+							});
+
+							conn.on('close', function() {
+								CinCall = false;
+							});
+					}
+				}
+
+			});
+
+
+		</script>
+
+	</body>
+
+</html>
