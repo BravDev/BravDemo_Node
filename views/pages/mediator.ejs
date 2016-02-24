@@ -1,0 +1,22 @@
+<% if(id) { %>
+   <h1><%= id %></h1>
+<% } %>
+
+
+<div id="video-container">
+  <video id="their-video"  autoplay></video>
+  <br />
+  <video id="my-video" controls muted="true" autoplay></video>
+</div>
+
+<div id="controllers">
+<button class="mdl-button mdl-js-button mdl-button--fab">
+  <i class="material-icons">group</i>
+</button>
+<button class="mdl-button mdl-js-button mdl-button--fab">
+  <i class="material-icons">more_horiz</i>
+</button>
+<button class="mdl-button mdl-js-button mdl-button--fab">
+  <i class="material-icons">videocam_off</i>
+</button>
+</div>
