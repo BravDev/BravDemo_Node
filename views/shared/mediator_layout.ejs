@@ -59,12 +59,13 @@
     </div>
 
     <script>
-
+			//allow to get microphone and camera
 			navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
       var id = '<%= id %>';
       var clientA = id.substr(0, 5);
 			var clientB = id.substr(5, 5);
 			var clientC = id.substr(10, 5);
+
 
 			var BinCall = false;
 			var CinCall = false;
@@ -72,9 +73,9 @@
 			console.log(clientA);
 			console.log(clientB);
 			console.log(clientC);
-
+			//wait to load jquery
 			$(document).ready(function() {
-
+				//connect to the peering server
 				var peer = new Peer(clientA, {host: 'localhost', port: 9000, path: '../api'});
 
 				//set my stream
@@ -82,15 +83,13 @@
 
 				//events
 				peer.on('open', function(id) {
-					//$("#myId").text(id);
-					console.log(id);
 					setInterval(callFirstPerson, 2000);
 					setInterval(callSecondPerson, 2000);
 					setOnlineStatus('A', 'online');
 				});
 
 				peer.on('connection', function(conn) {
-					conn.on('data', function(data){
+					conn.on('data', function(data) {
 						alert(data);
 					});
 				});
@@ -98,16 +97,14 @@
 
 				peer.on('call', function(call) {
 					call.answer(window.localStream);
+					addVideoElement(call.peer);
 
-					 if (window.existingCall) {
-						window.existingCall.close();
-					 }
+					console.log(call);
 
-					call.on('stream', function(stream){
-						$('#their-video').prop('src', URL.createObjectURL(stream));
+					call.on('stream', function(stream) {
+						$('#' + call.peer).prop('src', URL.createObjectURL(stream));
 					 });
 
-					 window.existingCall = call;
 				});
 
 
@@ -120,8 +117,8 @@
 
 				function init() {
 					navigator.getUserMedia({audio: true, video: true}, function(stream) {
-
-						$('#my-video').prop('src', URL.createObjectURL(stream));
+						addVideoElement(peer.id);
+						$('#' + peer.id).prop('src', URL.createObjectURL(stream));
 						window.localStream = stream;
 						}, function() {
 							 alert('error while init');
@@ -134,7 +131,6 @@
 						var call = peer.call(clientB, window.localStream);
 						var conn = peer.connect(clientB);
 							conn.on('open', function() {
-  							//conn.send('hi!');
 								BinCall = true;
 								setOnlineStatus('B', 'online');
 
@@ -143,6 +139,7 @@
 							conn.on('close', function() {
 								BinCall = false;
 								setOnlineStatus('B', 'offline');
+								$('#' + call.peer).remove();
 							});
 
 					}
@@ -162,12 +159,17 @@
 							conn.on('close', function() {
 								CinCall = false;
 								setOnlineStatus('C', 'offline');
+								$('#' + call.peer).remove();
 							});
 					}
 				}
 
 				function setOnlineStatus(client, status) {
 					$('#client' + client +'_status').text('(' + status + ')');
+				}
+
+				function addVideoElement(videoId) {
+					$('#video-container').append('<video id="' + videoId + '" autoplay ></video>');
 				}
 
 			});
