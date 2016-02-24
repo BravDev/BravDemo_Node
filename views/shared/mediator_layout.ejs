@@ -76,7 +76,7 @@
 			//wait to load jquery
 			$(document).ready(function() {
 				//connect to the peering server
-				var peer = new Peer(clientA, {host: 'https://radiant-wave-47642.herokuapp.com/', path:'../api'});
+				var peer = new Peer(clientA, {host: 'https://radiant-wave-47642.herokuapp.com/', port: 3000, path:'../api'});
 
 				//set my stream
 				init();
