@@ -15,5 +15,5 @@ The id passed to /mediator/:id is made up by concatinating 3 client IDs which co
 
  MySQL mock credentials: root as username and administrator as password
  To run the peering server 
- 'nodejs peer-server.js'
+ `nodejs peer-server.js`
 
