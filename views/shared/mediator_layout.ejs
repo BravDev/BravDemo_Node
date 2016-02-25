@@ -1,10 +1,11 @@
 <!doctype html>
 <html>
 	<head>
-
 	<title>Brav - Mediator</title>
 	<meta charset="utf-8" />
+
 	<!-- include Peer JS and JQuery -->
+
 	<script src="http://cdn.peerjs.com/0.3/peer.js"></script>
 	<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 	<!-- include Material Design Lite -->
@@ -13,20 +14,27 @@
 	<script defer src="https://code.getmdl.io/1.1.1/material.min.js"></script>
 
 	<!-- Custom CSS -->
-	<link rel="stylesheet" href="styles/main.css">
+
+	<link rel="stylesheet" href="/styles/main.css">
 
 	</head>
 
 	<body>
+
 	<!-- Fixed Drawer on the left side and header -->
+	
 	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+		
 		<!--Header-->
+		
 		<header class="mdl-layout__header">
-			<div class="mdl-layout__header-row">
+			<div class="mdl-layout__header-row" style="background-color: black;">
 			<div class="mdl-layout-spacer"></div>
 			<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right">
-			<span><img src="/images/lion_white.png" width="74px" class="avatar"></span>
-			<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
+			<span><img src="/images/lion_white.png" width="74px" class="avatar">
+			</span>
+			<div id='username'>MEDIATOR</div>
+			<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn" style="float: right;">
             <i class="material-icons">keyboard_arrow_down</i>
             </button>
             <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
@@ -38,89 +46,92 @@
           	<input class="mdl-textfield__input" type="text" name="sample" id="fixed-header-drawer-exp">
         	</div>
 			</div>
+			
 		</header>
-		<!--Drawer-->
-		<div class="mdl-layout__drawer">
-		<span class="mdl-layout-title"  style="margin:20px 0 0 0;"><img src="/images/brav_logo.png" width="85%"/></span>
-		<br>
 
-		
+	<!--Drawer-->
 
-	<!-- Participants Status -->
+	<div class="mdl-layout__drawer" style="background: #0086b3;border:none;">
 
-	<div class="demo-list-action mdl-list">
-
-		<div class="mdl-list__item">
-			<span class="mdl-list__item-primary-content">
-			  	<i class="material-icons mdl-list__item-avatar">person</i>
-			  	<span>Mediator A</span>
-			</span>
-			<a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">visibility</i></a>
-		  </div>
-		  <p id="clientA_status" style="text-align: center;"> (offline) </p>
-
-		  <div class="mdl-list__item">
-			<span class="mdl-list__item-primary-content">
-			  <i class="material-icons mdl-list__item-avatar">person</i>
-			  <span>Client A</span>
-			</span>
-			<a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">visibility_off</i></a>
-		  </div>
-		  <p id="clientB_status" style="text-align: center;"> (offline) </p>
-
-
-		  <div class="mdl-list__item">
-			<span class="mdl-list__item-primary-content">
-			  <i class="material-icons mdl-list__item-avatar">person</i>
-			  <span>Client B</span>
-			</span>
-			<span class="mdl-list__item-secondary-content">
-			  <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">visibility_off</i></a>
-		  </span>
-		  </div>
-		  <p id="clientC_status" style="text-align: center;"> (offline) </p>
-
-
+		<div style="text-align: center;">
+		<span class="mdl-layout-title"><img src="/images/lion_white.png"  style="margin-top:18px;width: 40%;" /></span>
 		</div>
-		<hr>
 
-		<!-- Original 
+		<!-- Participants Status -->
 
-	  <div class="mdl-navigation">
-		<div class="mdl-navigation__link" href="">Mediator A <span id="clientA_status"> (offline) </span></div>
-		<div class="mdl-navigation__link" href="">Client A <span id="clientB_status"> (offline) </span></div>
-		<div class="mdl-navigation__link" href="">Client B <span id="clientC_status"> (offline) </span></div>
-	  </div>
+		<div class="demo-list-action mdl-list">
 
-		-->
-
-
-	  <!-- Floating Multiline Textfield -->
-	  <form action="#">
-		<div class="mdl-textfield mdl-js-textfield">
-		  <textarea class="mdl-textfield__input" type="text" rows= "5" id="sample5" ></textarea>
-		  <label class="mdl-textfield__label" for="sample5">Write your mediation checklist</label>
-		</div>
-	  </form>
-
-	  <div class="chat">
-		<!-- Simple Textfield -->
-		<form action="#">
-		  <div class="mdl-textfield mdl-js-textfield">
-			<input class="mdl-textfield__input" type="text" id="sample1">
-			<label class="mdl-textfield__label" for="sample1">Type to chat</label>
-		  </div>
-
-		  <!-- Raised button -->
-		  <button class="mdl-button mdl-js-button mdl-button--raised">
-			Send
-		  </button>
-		</form>
+			<div class="mdl-list_item" style="text-align: center;">
+			<button class="mdl-button mdl-js-button" id="left_button">
+					<i class="material-icons" style="font-size:38px;">voice_chat</i>
+  					Session
+			</button>
+			</div>
+			<div class="mdl-list_item" style="text-align: center;">
+			<button class="mdl-button mdl-js-button" id="left_button">
+  					<i class="material-icons" style="font-size: 38px;">perm_identity</i>
+  					Clients
+			</button>
+			</div>
 		</div>
 	</div>
+
+	<!-- Content Area -->
+
 	<main class="mdl-layout__content">
+
 		<div class="page-content">
-		<%-body %>
+		<% include ../pages/mediator %>
+		</div>
+
+		<!-- Right Sidebar-->
+		
+		<div class="right_sidebar">
+
+				<div style="width: 100%;background-color: #0086b3; height: 40px;">
+	        		<p style="margin-top:8px;margin-left: 10px;color: white;font-size: 23px;display: inline-block;">NOTES</p>
+	        	</div>
+
+			<div class="checklist">
+
+				<!-- Floating Multiline Textfield -->
+				<form action="#">
+				  <div class="mdl-textfield mdl-js-textfield">
+				    <textarea class="mdl-textfield__input" type="text" rows= "9" id="sample5" ></textarea>
+				    <label class="mdl-textfield__label" for="sample5">
+				    	..... 
+				    </label>
+				  </div>
+				</form>
+
+			</div>
+				
+			<div class="chat">
+
+				<div style="width: 100%;background-color: #0086b3; height: 40px;">
+	        		<p style="margin-top:8px;margin-left: 10px;color: white;font-size: 23px;display: inline-block;">CHAT</p>
+	        	</div>
+
+	        <!-- Message Box -->
+	        	<div class="messages">
+	        	
+	        	</div>
+
+	        	<div class="input_box">
+	        	<form action="#">
+			          <div class="mdl-textfield mdl-js-textfield">
+			            <input class="mdl-textfield__input" type="text" id="sample1">
+			            <label class="mdl-textfield__label" for="sample1">Type to chat</label>
+			          </div>
+
+			          <!-- Raised button -->
+			          <button class="mdl-button mdl-js-button mdl-button--raised">
+			            Send
+			          </button>
+			        </form>
+		        </div>
+	      	</div>
+
 		</div>
 	</main>
 	</div>

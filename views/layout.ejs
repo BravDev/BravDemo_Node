@@ -29,6 +29,7 @@
     -->
 
     <!--STYLES-->
+    <link rel="stylesheet" href="/styles/home.css">
     <link rel="stylesheet" href="/styles/main.css">
     <link rel="stylesheet" href="/styles/material.min.css">
     <!--STYLES END-->
@@ -37,32 +38,30 @@
   <body>
 
   <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-  <header class="mdl-layout__header">
-    <div class="mdl-layout__header-row">
-      <!-- Title -->
-      <span class="mdl-layout-title">Brav</span>
-      <!-- Add spacer, to align navigation to the right -->
-      <div class="mdl-layout-spacer"></div>
-      <!-- Navigation. We hide it in small screens. -->
-      <nav class="mdl-navigation mdl-layout--large-screen-only">
-        <a class="mdl-navigation__link" href="">Link</a>
-        <a class="mdl-navigation__link" href="">Link</a>
-        <a class="mdl-navigation__link" href="">Login</a>
-        <a class="mdl-navigation__link" href="">Sign Up</a>
-      </nav>
-    </div>
-  </header>
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <!-- Title -->
+        <span class="mdl-layout-title">Brāv</span>
+        <!-- Add spacer, to align navigation to the right -->
+        <div class="mdl-layout-spacer"></div>
+        <!-- Navigation. We hide it in small screens. -->
+        <nav class="mdl-navigation mdl-layout--large-screen-only">
+          <a class="mdl-navigation__link" href="/mediator">Mediator</a>
+          
+        </nav>
+      </div>
+    </header>
   
   <main class="mdl-layout__content">
     <div class="page-content">
 
     <!-- Your content goes here -->
-    <%- body %>
+    <% include homepage.ejs %>
     
     </div>
   </main>
 
-  <!-- Footer -->
+  <!-- Footer 
 
     <footer class="mdl-mega-footer">
     <div class="mdl-mega-footer__middle-section">
@@ -121,6 +120,8 @@
     </div>
 
   </footer>
+
+  -->
   
   </div>
     
