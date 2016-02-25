@@ -1,10 +1,25 @@
-<% if(id) { %>
-   <h1><%= id %></h1>
-<% } %>
-
-
 <div id="video-container">
-  <!--<video id="their-video"  autoplay></video>
-  <br />
-  <video id="my-video" controls muted="true" autoplay></video> -->
+
+</div>
+
+<div id="controllers">
+
+	<button class="mdl-button mdl-js-button mdl-button--fab" id="btn_group">
+	  <i class="material-icons" id="icons">group</i>
+	</button>
+
+	<button class="mdl-button mdl-js-button mdl-button--fab" id="btn_options">
+	  <i class="material-icons" id="icons">more_horiz</i>
+	</button>
+
+	<ul class="mdl-menu mdl-menu--top-left mdl-js-menu mdl-js-ripple-effect" data-mdl-for="btn_options">
+	  <li class="mdl-menu__item">Slient Client A</li>
+	  <li class="mdl-menu__item">Slient Client B</li>
+	  <li disabled class="mdl-menu__item">Slient Client C</li>
+	</ul>
+
+	<button class="mdl-button mdl-js-button mdl-button--fab"
+	id="btn_hangoff">
+	  <i class="material-icons" id="icons">videocam_off</i>
+	</button>
 </div>
