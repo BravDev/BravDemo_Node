@@ -33,7 +33,7 @@ process.chdir(__dirname);
     };
     var PeerServer = require('peer').PeerServer;
     var server = PeerServer({port: 9000, path: '/api'});
-    server.listen();
+    //server.listen();
 
   } catch (e) {
     console.error('To run an app using `node app.js`, you usually need to have a version of `sails` installed in the same directory as your app.');
