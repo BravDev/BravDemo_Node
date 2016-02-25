@@ -13,13 +13,8 @@ module.exports.http = {
 
   //custom express middleware in order to add peer js server on port 9000
   customMiddleware: function(app) {
-    /*  var ExpressPeerServer = require('peer').ExpressPeerServer;
-      var options = {
-        debug: true
-      };
+      
 
-      app.use('/api', ExpressPeerServer(app, options));
-      */
 
   }
 
