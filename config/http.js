@@ -11,13 +11,6 @@
 
 module.exports.http = {
 
-  //custom express middleware in order to add peer js server on port 9000
-  customMiddleware: function(app) {
-      
-
-
-  }
-
   /****************************************************************************
   *                                                                           *
   * Express middleware to use for every Sails request. To add custom          *
