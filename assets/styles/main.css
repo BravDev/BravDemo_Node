@@ -24,6 +24,7 @@ p {
 	height: 10%;
 }
 
+
 #account {
 	border-style: groove;
 	border-color: white;
@@ -44,7 +45,9 @@ p {
 .avatar {
     position: relative;
     float: left;
+
     margin-left: 25px;
+
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;
@@ -71,8 +74,10 @@ p {
 	position: absolute;
 	height: 100%;
 	width: 85%;
+
 	display: flex;
   flex-flow: column;
+
 }
 
 /*** Right Side Bar **/
@@ -113,6 +118,7 @@ p {
 /** Buttons **/
 
 #btn_group, #btn_options {
+
 	background-color: #598ebf;
 }
 
@@ -126,6 +132,7 @@ p {
 	color:white;
 	font-size: 44px;
 }
+
 
 #controllers {
 	margin-top: 6%;
@@ -166,6 +173,13 @@ p {
     margin-left: 10px;
     margin-top: 10px;
     position: relative;
+}
+
+
+#controllers {
+	margin-top: 6%;
+	text-align: center;
+	position: relative;
 }
 
 .mdl-textfield .mdl-js-textfield {
