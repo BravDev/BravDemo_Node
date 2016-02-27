@@ -11,6 +11,18 @@
 
 module.exports.http = {
 
+  customMiddleware: function(app) {
+    var ExpressPeerServer = require('peer').ExpressPeerServer;
+
+    var options = {
+      debug: true
+    };
+    var server = app.listen(process.env.PORT);
+    app.use('/api', ExpressPeerServer(server, options));
+
+    console.log('MIDDDLEWAREEEEEEEE');
+
+  }
   /****************************************************************************
   *                                                                           *
   * Express middleware to use for every Sails request. To add custom          *

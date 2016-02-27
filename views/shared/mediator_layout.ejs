@@ -153,7 +153,11 @@
 			//wait to load jquery
 			$(document).ready(function() {
 				//connect to the peering server
-				var peer = new Peer(clientA, {host: '/', port: 9000, path:'../api'});
+				var peer = new Peer(clientA, {
+					host: location.hostname,
+					port: location.port || (location.protocol === 'https:' ? 443 : 80),
+					path:'../api'
+				});
 
 				//set my stream
 				init();
