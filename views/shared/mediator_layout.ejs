@@ -155,8 +155,9 @@
 				//connect to the peering server
 				var peer = new Peer(clientA, {
 					host: location.hostname,
-					port: location.port || (location.protocol === 'https:' ? 443 : 80),
-					path:'../api'
+					port: 9000,
+					proxied: true,
+					path:'/api',
 				});
 
 				//set my stream

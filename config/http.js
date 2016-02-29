@@ -12,15 +12,12 @@
 module.exports.http = {
 
   customMiddleware: function(app) {
-    var ExpressPeerServer = require('peer').ExpressPeerServer;
-
     var options = {
       debug: true
     };
-    var server = app.listen(process.env.PORT);
-    app.use('/api', ExpressPeerServer(server, options));
 
-    console.log('MIDDDLEWAREEEEEEEE');
+    var PeerServer = require('peer').PeerServer;
+    var server = PeerServer({port: 9000, path: '/api'});
 
   }
   /****************************************************************************
