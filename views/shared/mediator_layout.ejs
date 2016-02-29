@@ -201,6 +201,23 @@
 					});
 				});
 
+
+				//silent functions
+				$('#silentA').click(function() {
+					$('#' + clientA).prop('muted', true);
+					console.log('muted');
+				});
+
+				$('#silentB').click(function() {
+					$('#' + clientB).prop('muted', true);
+					console.log('muted');
+				});
+
+				$('#silentC').click(function() {
+					$('#' + clientC).prop('muted', true);
+					console.log('muted');
+				});
+
 				function init() {
 					navigator.getUserMedia({audio: true, video: true}, function(stream) {
 						addVideoElement(peer.id);
@@ -255,8 +272,10 @@
 				}
 
 				function addVideoElement(videoId) {
-					$('#video-container').append('<div class="video-window"><video id="' + videoId + '" class="client-video" autoplay width="100%" muted ></video></div>');
+					$('#video-container').append('<div class="video-window"><video id="' + videoId + '" class="client-video" autoplay width="100%" ></video></div>');
 				}
+
+
 
 			});
 

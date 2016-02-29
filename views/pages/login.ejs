@@ -1,0 +1,172 @@
+<!DOCTYPE HTML>
+<html>
+
+  <head>
+      <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.indigo-pink.min.css">
+      <script src="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.min.js"></script>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+      <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+      <link rel = "stylesheet" href = "../styles/greeny.css" />
+      <!-- Background -->
+      <style>
+        body {
+          background-color: #598ebf;
+        }
+      </style>
+
+      <!-- Image card -->
+      <style>
+      .demo-card-image.mdl-card {
+        width: 256px;
+        height: 256px;
+        background: url("images/facebook.jpg") center / cover;
+        margin: 0 auto;
+        margin-top: 5%;
+        text-align: center;
+      }
+      .demo-card-image > .mdl-card__actions {
+        height: 52px;
+        padding: 16px;
+        background: rgba(0, 0, 0, 0.2);
+      }
+      .demo-card-image_logo {
+        color: #fff;
+        font-size: 14px;
+        font-weight: 500;
+        background: url("images/disclosure.png");
+      }
+      .login {
+        width: 256px;
+        margin: 0 auto;
+        margin-top: 0.5%;
+        animation: fadeIn 7s;
+        -webkit-animation: fadeIn 7s;
+      }
+
+      .mdl-textfield__label {
+        color: white;
+      }
+
+      .mdl-textfield__input {
+        color: white;
+        text-color: white;
+      }
+
+      #logo-img {
+        width: 100%;
+        height: 100%;
+      }
+
+      #container-custom {
+        height: 200px;
+      }
+
+      #logo-container {
+        width: 200px;
+        height: 200px;
+        margin: auto;
+        margin-top: 100px;
+
+        animation: fancyLogo 2s;
+        -webkit-animation: fancyLogo 2s;
+      }
+
+      @keyframes fancyLogo {
+        0% {
+          width: 0px;
+          height: 0px;
+        }
+        100% {
+          width: 200px;
+          height: 200px;
+        }
+      }
+
+      @-webkit-keyframes fancyLogo {
+        0% {
+          width: 0px;
+          height: 0px;
+        }
+        100% {
+          width: 200px;
+          height: 200px;
+        }
+      }
+
+      #big-title {
+        color: white;
+        text-shadow: #66ff99;
+        margin: auto;
+        animation: fadeIn 4s;
+        -webkit-animation: fadeIn 4s;
+      }
+
+      #login-form {
+        display: block;
+        text-align: center;
+      }
+
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+        }
+        50% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      @-webkit-keyframes fadeIn {
+        0% {
+          opacity: 0;
+        }
+        50% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      </style>
+
+  </head>
+
+
+  <body>
+
+    <div id="container-custom">
+      <div id = "logo-container">
+        <img src= "../images/lion_white.png" id="logo-img"/>
+      </div>
+    </div>
+
+    <center> <h1 id="big-title">brāv</h1> </center>
+
+    <form id="login-form">
+      <div class="mdl-textfield mdl-js-textfield" class="login">
+        <input class="mdl-textfield__input" type="text" id="sample1">
+        <label class="mdl-textfield__label" for="sample1">User ID</label>
+      </div>
+
+      <br />
+
+      <div class="mdl-textfield mdl-js-textfield" class="login">
+        <input class="mdl-textfield__input" type="password" id="sample1">
+        <label class="mdl-textfield__label" for="sample1">Password</label>
+      </div>
+
+      <br />
+
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" style="width: 300px; color: white">
+        Submit
+      </button>
+
+  </form>
+
+
+  </body>
+
+</html>
