@@ -14,9 +14,8 @@ p {
 #username {
 	font-size: 20px;
 	float: left;
-	margin-left: 30px;
+	margin-left: 23px;
 	margin-top: 18px;
-	margin-right: 30px;
 }
 
 .mdl-layout__header-row {
@@ -32,9 +31,14 @@ p {
 	font-size: 21px;
 }
 
+#hdrbtn {
+	height: 56px;
+	width: 56px;
+}
 
 .avatar {
     position: relative;
+    margin-left: 17px;
     float: left;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
@@ -61,14 +65,28 @@ p {
 	background: #1a1a1a;
 	position: absolute;
 	height: 100%;
-	width: 85%;
+	width: 82.3%;
+}
+
+.mdl-layout-spacer {
+	width: 84%;
+}
+
+.account {
+	display: inline-block;
+	border-style: groove;
+	border-color: white;
+	border-width: 0px 0px 0px 1px;
+	position: relative;
+	overflow: auto;
+	width: 100%;
 }
 
 /*** Right Side Bar **/
 
 .right_sidebar {
 	float: right;
-	width: 15%;
+	width: 17.7%;
 	display: block;
 	position: relative;
 	background-color: white;
@@ -102,7 +120,7 @@ p {
 /** Buttons **/
 
 #btn_group, #btn_options {
-	background-color: #0086b3;
+	background-color: #598ebf;
 }
 
 #btn_hangoff {
@@ -125,14 +143,13 @@ p {
 
 /** Video Content **/
 
-#client-video {
+#my-video, #their-video {
 	display: inline-block;
 	width: 100%;
 	position: relative;
 }
 
 #video-container {
-
     width:100%;
     height:74%;
     display: block;
@@ -141,14 +158,6 @@ p {
 
 }
 
-.video-window {
-	width:49%;
-	float:left;
-	border:1px solid #000;
-	margin-left: 10px;
-	margin-top: 10px;
-	position: relative;
-}
 #window1, #window2 {
     width:49%;
     float:left;
