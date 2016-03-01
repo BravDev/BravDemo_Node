@@ -16,12 +16,21 @@
 //
 // (if you're using LESS with the built-in default config, you'll want
 //  to change `assets/styles/importer.less` instead.)
+<<<<<<< HEAD
 var cssFilesToInject = [
   'styles/material.min.css',
 
   'styles/main.css'
 ];
 
+=======
+//  var cssFilesToInject = [
+//  'styles/**/*.css'
+// ];
+var cssFilesToInject = [
+  'styles/*.css'
+ ];
+>>>>>>> cba6c6451cdcc4b94203a1ca2d1272edd0c612b4
 
 // Client-side javascript files to inject in order
 // (uses Grunt-style wildcard/glob/splat expressions)
@@ -73,3 +82,8 @@ module.exports.jsFilesToInject = jsFilesToInject.map(function(jsPath) {
 module.exports.templateFilesToInject = templateFilesToInject.map(function(tplPath) {
   return require('path').join('assets/',tplPath);
 });
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> cba6c6451cdcc4b94203a1ca2d1272edd0c612b4

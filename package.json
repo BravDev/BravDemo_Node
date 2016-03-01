@@ -21,8 +21,12 @@
     "include-all": "~0.1.6",
     "rc": "1.0.1",
     "sails": "~0.12.1",
+<<<<<<< HEAD
     "sails-disk": "~0.10.9",
     "dustjs-linkedin": "^2.7.0"
+=======
+    "sails-disk": "~0.10.9"
+>>>>>>> cba6c6451cdcc4b94203a1ca2d1272edd0c612b4
   },
   "scripts": {
     "debug": "node debug app.js",

@@ -27,6 +27,7 @@ process.chdir(__dirname);
   var sails;
   try {
     sails = require('sails');
+<<<<<<< HEAD
     //Peer JS server
     var options = {
       debug: true
@@ -35,6 +36,8 @@ process.chdir(__dirname);
     var server = PeerServer({port: 9000, path: '/api'});
     server.listen();
 
+=======
+>>>>>>> cba6c6451cdcc4b94203a1ca2d1272edd0c612b4
   } catch (e) {
     console.error('To run an app using `node app.js`, you usually need to have a version of `sails` installed in the same directory as your app.');
     console.error('To do that, run `npm install sails`');

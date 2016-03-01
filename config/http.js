@@ -11,6 +11,22 @@
 
 module.exports.http = {
 
+<<<<<<< HEAD
+=======
+  //custom express middleware in order to add peer js server on port 9000
+  customMiddleware: function(app) {
+      var ExpressPeerServer = require('peer').ExpressPeerServer;
+      var options = {
+        debug: true
+      };
+
+      var server = app.listen(9000);
+
+      app.use('/api', ExpressPeerServer(server, options));
+
+  }
+
+>>>>>>> cba6c6451cdcc4b94203a1ca2d1272edd0c612b4
   /****************************************************************************
   *                                                                           *
   * Express middleware to use for every Sails request. To add custom          *

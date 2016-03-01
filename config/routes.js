@@ -36,6 +36,7 @@ module.exports.routes = {
     view: 'homepage'
   },
 
+<<<<<<< HEAD
   'get /mediator/:id': {
     view: 'pages/mediator',
     controller: 'MediatorController',
@@ -63,6 +64,14 @@ module.exports.routes = {
     action: 'index',
     skipAssets: true
   }
+=======
+  '/mediator/:id': {
+    controller: 'MediatorController',
+    action: 'index',
+    skipAssets: true
+  }
+
+>>>>>>> cba6c6451cdcc4b94203a1ca2d1272edd0c612b4
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *

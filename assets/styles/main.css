@@ -2,11 +2,19 @@
 	font-size: 40px;
 }
 
+<<<<<<< HEAD
+=======
+.mdl-mega-footer {
+	bottom: 0px;
+}
+
+>>>>>>> cba6c6451cdcc4b94203a1ca2d1272edd0c612b4
 p {
 	color: white;
 	font-size: 13px;
 }
 
+<<<<<<< HEAD
 /** Left Side Bar **/
 
 .mdl-list {
@@ -37,6 +45,13 @@ p {
 	margin-left: 30px;
 	margin-top: 18px;
 	margin-right: 30px;
+=======
+#username {
+	font-size: 20px;
+	float: left;
+	margin-left: 23px;
+	margin-top: 18px;
+>>>>>>> cba6c6451cdcc4b94203a1ca2d1272edd0c612b4
 }
 
 .mdl-layout__header-row {
@@ -44,6 +59,7 @@ p {
 	height: 10%;
 }
 
+<<<<<<< HEAD
 
 #account {
 	border-style: groove;
@@ -53,6 +69,8 @@ p {
 }
 
 
+=======
+>>>>>>> cba6c6451cdcc4b94203a1ca2d1272edd0c612b4
 #left_button {
 	color: white;
 	height: 100px;
@@ -61,6 +79,7 @@ p {
 	font-size: 21px;
 }
 
+<<<<<<< HEAD
 
 .avatar {
     position: relative;
@@ -68,6 +87,17 @@ p {
 
     margin-left: 25px;
 
+=======
+#hdrbtn {
+	height: 56px;
+	width: 56px;
+}
+
+.avatar {
+    position: relative;
+    margin-left: 17px;
+    float: left;
+>>>>>>> cba6c6451cdcc4b94203a1ca2d1272edd0c612b4
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;
@@ -84,10 +114,19 @@ p {
 	width: 68px;
 }
 
+<<<<<<< HEAD
+=======
+.mdl-button--raised {
+	margin-left: 110px;
+	background: white;
+}
+
+>>>>>>> cba6c6451cdcc4b94203a1ca2d1272edd0c612b4
 .page-content {
 	background: #1a1a1a;
 	position: absolute;
 	height: 100%;
+<<<<<<< HEAD
 	width: 100%;
 }
 
@@ -151,6 +190,32 @@ p {
 	width: 15%;
 	display: inline-block;
 	position: fixed;
+=======
+	width: 82.3%;
+}
+
+.mdl-layout-spacer {
+	width: 84%;
+}
+
+.account {
+	display: inline-block;
+	border-style: groove;
+	border-color: white;
+	border-width: 0px 0px 0px 1px;
+	position: relative;
+	overflow: auto;
+	width: 100%;
+}
+
+/*** Right Side Bar **/
+
+.right_sidebar {
+	float: right;
+	width: 17.7%;
+	display: block;
+	position: relative;
+>>>>>>> cba6c6451cdcc4b94203a1ca2d1272edd0c612b4
 	background-color: white;
 	height: 100%;
 }
@@ -179,10 +244,16 @@ p {
     border-width: 1px 0px 1px 0px;
 }
 
+<<<<<<< HEAD
 /** Mediator Buttons **/
 
 #btn_group, #btn_options {
 
+=======
+/** Buttons **/
+
+#btn_group, #btn_options {
+>>>>>>> cba6c6451cdcc4b94203a1ca2d1272edd0c612b4
 	background-color: #598ebf;
 }
 
@@ -197,6 +268,7 @@ p {
 	font-size: 44px;
 }
 
+<<<<<<< HEAD
 #controllers {
 	margin-top: 42px;
 	text-align: center;
@@ -205,18 +277,34 @@ p {
 	width: 75%;
 	display: inline-block;
 	bottom:20px;
+=======
+.mdl-menu__container {
+	left: 605px !important;
+    bottom: 118px !important;
+    width: 107.719px !important;
+    height: 169px !important;
+>>>>>>> cba6c6451cdcc4b94203a1ca2d1272edd0c612b4
 }
 
 /** Video Content **/
 
+<<<<<<< HEAD
 .client-video {
 	display: inline-block;
 	width: 42%;
+=======
+#my-video, #their-video {
+	display: inline-block;
+	width: 100%;
+>>>>>>> cba6c6451cdcc4b94203a1ca2d1272edd0c612b4
 	position: relative;
 }
 
 #video-container {
+<<<<<<< HEAD
 	float: left;
+=======
+>>>>>>> cba6c6451cdcc4b94203a1ca2d1272edd0c612b4
     width:100%;
     height:74%;
     display: block;
@@ -225,6 +313,7 @@ p {
 
 }
 
+<<<<<<< HEAD
 .video-window {
 	border:1px solid #000;
 	margin-left: 10px;
@@ -232,6 +321,8 @@ p {
 	position: relative;
 	text-align: center;
 }
+=======
+>>>>>>> cba6c6451cdcc4b94203a1ca2d1272edd0c612b4
 #window1, #window2 {
     width:49%;
     float:left;
@@ -241,9 +332,22 @@ p {
     position: relative;
 }
 
+<<<<<<< HEAD
 .mdl-textfield .mdl-js-textfield {
 	border-radius: 1em;
 }
 
 
+=======
+#controllers {
+	margin-top: 100px;
+	text-align: center;
+	position: relative;
+}
+
+
+.mdl-textfield .mdl-js-textfield {
+	border-radius: 1em;
+}
+>>>>>>> cba6c6451cdcc4b94203a1ca2d1272edd0c612b4
 
