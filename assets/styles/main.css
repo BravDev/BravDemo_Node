@@ -2,14 +2,34 @@
 	font-size: 40px;
 }
 
-.mdl-mega-footer {
-	bottom: 0px;
-}
-
 p {
 	color: white;
 	font-size: 13px;
 }
+
+/** Left Side Bar **/
+
+.mdl-list {
+	padding-top: 0px;
+}
+
+.logo_box {
+	text-align: center;
+	border: 1px solid white;
+	border-width: 0 0 1px 0;
+	background-color: #4b7aa8;
+}
+
+#logo {
+	padding: 30px 10px 30px 10px;
+	height: 150%;
+}
+
+#hdrbtn {
+	margin-top: 20px;
+}
+
+/** **/
 
 #username {
 	font-size: 20px;
@@ -64,29 +84,73 @@ p {
 	width: 68px;
 }
 
-.mdl-button--raised {
-	margin-left: 110px;
-	background: white;
-}
-
 .page-content {
 	background: #1a1a1a;
 	position: absolute;
 	height: 100%;
-	width: 85%;
-
-	display: flex;
-  flex-flow: column;
-
+	width: 100%;
 }
 
-/*** Right Side Bar **/
+/** Admin **/
+
+.admin_session {
+	background-color: white;
+	width: 100%;
+	height: 100%;
+}
+
+/** Admin top buttons **/
+#admin_buttons {
+	width: 280px;
+	background-color:#4da6ff;
+	margin:5px 18px 5px 18px;	
+	letter-spacing: 0.05em;
+	height: 46px;
+}
+
+.admin_video {
+	height: 100%;
+	width: 85%;
+	float: left;
+	display: inline-block;
+}
+
+#admin_video_main {
+	height: 47%;
+	display: inline-block;
+	width: 100%;
+	text-align: center;
+	position: relative;
+}
+
+#admin_video_alt {
+	width: 100%;
+	height: 40%;
+	display: inline-block;
+	position: relative;
+	bottom: 7%;
+}
+
+#admin_video_1, #admin_video_2 {
+	height: 100%;
+	float: left;
+	width: 45%;
+	background-color: white;
+	border:1px solid #000;
+	padding: 10px 10px 10px 10px;
+	margin-left: 2%;
+}
+
+
+/** Mediator **/
+
+/*** Mediator Right Side Bar **/
 
 .right_sidebar {
-	float: right;
+	float: left;
 	width: 15%;
-	display: block;
-	position: relative;
+	display: inline-block;
+	position: fixed;
 	background-color: white;
 	height: 100%;
 }
@@ -115,7 +179,7 @@ p {
     border-width: 1px 0px 1px 0px;
 }
 
-/** Buttons **/
+/** Mediator Buttons **/
 
 #btn_group, #btn_options {
 
@@ -133,23 +197,26 @@ p {
 	font-size: 44px;
 }
 
-
 #controllers {
-	margin-top: 6%;
+	margin-top: 42px;
 	text-align: center;
-	position: relative;
+	position: fixed;
+	height: 8%;
+	width: 75%;
+	display: inline-block;
+	bottom:20px;
 }
 
 /** Video Content **/
 
-#client-video {
+.client-video {
 	display: inline-block;
-	width: 100%;
+	width: 42%;
 	position: relative;
 }
 
 #video-container {
-
+	float: left;
     width:100%;
     height:74%;
     display: block;
@@ -159,12 +226,11 @@ p {
 }
 
 .video-window {
-	width:49%;
-	float:left;
 	border:1px solid #000;
 	margin-left: 10px;
 	margin-top: 10px;
 	position: relative;
+	text-align: center;
 }
 #window1, #window2 {
     width:49%;
@@ -175,13 +241,9 @@ p {
     position: relative;
 }
 
-
-#controllers {
-	margin-top: 6%;
-	text-align: center;
-	position: relative;
-}
-
 .mdl-textfield .mdl-js-textfield {
 	border-radius: 1em;
 }
+
+
+

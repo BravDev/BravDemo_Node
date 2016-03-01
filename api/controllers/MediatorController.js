@@ -7,7 +7,7 @@
 
 module.exports = {
 	index: function(req, res) {
-		res.render('pages/mediator', {_layoutFile: '../shared/mediator_layout.ejs', id: req.param('id')});
+		res.render('pages/mediator', {_layoutFile: '../layouts/mediator_layout.ejs', id: req.param('id')});
 	},
 
 };

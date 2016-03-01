@@ -36,12 +36,33 @@ module.exports.routes = {
     view: 'homepage'
   },
 
-  '/mediator/:id': {
+  'get /mediator/:id': {
+    view: 'pages/mediator',
     controller: 'MediatorController',
     action: 'index',
     skipAssets: true
-  }
+  },
 
+  'get /client/:id': {
+    view: 'pages/client',
+    controller: 'ClientController',
+    action: 'index',
+    skipAssets: true
+  },
+
+  'get /admin/:id': {
+    view: 'pages/admin',
+    controller: 'AdminController',
+    action: 'index',
+    skipAssets: true
+  },
+
+  'get /admin_session/:id': {
+    view: 'pages/admin_session',
+    controller: 'AdminController',
+    action: 'index',
+    skipAssets: true
+  }
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *
