@@ -6,7 +6,7 @@
       <script src="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.min.js"></script>
       <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
       <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
-      <link rel = "stylesheet" href = "../styles/greeny.css" />
+      <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
       <!-- Background -->
       <style>
       body {
@@ -123,26 +123,51 @@
 
     <center> <h1 id="big-title">brāv</h1> </center>
 
-    <form id="login-form">
+    <div id="login-form">
       <div class="mdl-textfield mdl-js-textfield" class="login">
-        <input class="mdl-textfield__input" type="text" id="sample1">
+        <input class="mdl-textfield__input" id="userid" type="text" id="sample1">
         <label class="mdl-textfield__label" for="sample1">User ID</label>
       </div>
 
       <br />
 
       <div class="mdl-textfield mdl-js-textfield" class="login">
-        <input class="mdl-textfield__input" type="password" id="sample1">
+        <input class="mdl-textfield__input" id="password" type="password" id="sample1">
         <label class="mdl-textfield__label" for="sample1">Password</label>
       </div>
 
       <br />
 
-      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" style="width: 300px; color: white">
+      <button id="submit-button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" style="width: 300px; color: white">
         Submit
       </button>
 
-  </form>
+  </div>
+
+  <script>
+    $(document).ready(function() {
+      $('#submit-button').click(function() {
+        var loginData = {
+          userid: $('#userid').val(),
+          password: $('#password').val()
+        };
+        $.ajax({
+          type: "POST",
+          url: '../auth/login',
+          data: loginData,
+          success: function(res) {
+            console.log(res);
+          },
+          error: function(err) {
+            console.log(err);
+          },
+          dataType: 'JSON'
+        });
+
+      });
+
+    });
+  </script>
 
 
   </body>

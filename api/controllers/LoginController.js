@@ -8,5 +8,9 @@
 module.exports = {
 	index: function(req, res) {
 		res.render('pages/login');
+	},
+
+	checkLogin: function(req, res) {
+		
 	}
 };

@@ -2,20 +2,41 @@
 	font-size: 40px;
 }
 
-.mdl-mega-footer {
-	bottom: 0px;
-}
-
 p {
 	color: white;
 	font-size: 13px;
 }
 
+/** Left Side Bar **/
+
+.mdl-list {
+	padding-top: 0px;
+}
+
+.logo_box {
+	text-align: center;
+	border: 1px solid white;
+	border-width: 0 0 1px 0;
+	background-color: #4b7aa8;
+}
+
+#logo {
+	padding: 30px 10px 30px 10px;
+	height: 150%;
+}
+
+#hdrbtn {
+	margin-top: 20px;
+}
+
+/** **/
+
 #username {
 	font-size: 20px;
 	float: left;
-	margin-left: 23px;
+	margin-left: 30px;
 	margin-top: 18px;
+	margin-right: 30px;
 }
 
 .mdl-layout__header-row {
@@ -23,23 +44,31 @@ p {
 	height: 10%;
 }
 
+
+#account {
+	border-style: groove;
+	border-color: white;
+	border-width: 0px 0px 0px 1px;
+	width: 280px;
+}
+
+
 #left_button {
 	color: white;
-	height: 100px;
+	height: 75px;
 	min-width: 100%;
 	letter-spacing: 0.05em;
 	font-size: 21px;
+	text-align: left;
 }
 
-#hdrbtn {
-	height: 56px;
-	width: 56px;
-}
 
 .avatar {
     position: relative;
-    margin-left: 17px;
     float: left;
+
+    margin-left: 25px;
+
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;
@@ -56,39 +85,105 @@ p {
 	width: 68px;
 }
 
-.mdl-button--raised {
-	margin-left: 110px;
-	background: white;
-}
-
 .page-content {
 	background: #1a1a1a;
 	position: absolute;
 	height: 100%;
-	width: 82.3%;
-}
-
-.mdl-layout-spacer {
-	width: 84%;
-}
-
-.account {
-	display: inline-block;
-	border-style: groove;
-	border-color: white;
-	border-width: 0px 0px 0px 1px;
-	position: relative;
-	overflow: auto;
 	width: 100%;
 }
 
-/*** Right Side Bar **/
+/** Admin **/
+
+.admin_session {
+	background-color: white;
+	width: 100%;
+	height: 100%;
+}
+
+/** Admin top buttons **/
+#admin_buttons {
+	width: 280px;
+	background-color:#4da6ff;
+	margin:5px 18px 5px 18px;
+	letter-spacing: 0.05em;
+	height: 46px;
+}
+
+.admin_video {
+	height: 100%;
+	width: 85%;
+	float: left;
+	display: inline-block;
+}
+
+#admin_video_main {
+	height: 47%;
+	display: inline-block;
+	width: 100%;
+	text-align: center;
+	position: relative;
+}
+
+#admin_video_alt {
+	width: 100%;
+	height: 40%;
+	display: inline-block;
+	position: relative;
+	bottom: 7%;
+}
+
+#admin_video_1, #admin_video_2 {
+	height: 100%;
+	float: left;
+	width: 45%;
+	background-color: white;
+	border:1px solid #000;
+	padding: 10px 10px 10px 10px;
+	margin-left: 2%;
+}
+
+
+/** Mediator **/
+
+.mediator_video {
+	height: 100%;
+	width: 85%;
+	float: left;
+	display: inline-block;
+}
+
+
+#mediator_controllers {
+	margin-top: 42px;
+	text-align: center;
+	position: fixed;
+	height: 8%;
+	width: 75%;
+	bottom:20px;
+}
+
+#mediator_video_main {
+	height: 35%;
+	display: inline-block;
+	width: 100%;
+	position: relative;
+}
+
+#mediator_video_alt {
+	width: 100%;
+	height: 35%;
+	display: inline-block;
+	position: relative;
+	bottom: 7%;
+}
+
+/*** Mediator Right Side Bar **/
 
 .right_sidebar {
-	float: right;
-	width: 17.7%;
-	display: block;
-	position: relative;
+	float: left;
+	width: 15%;
+	display: inline-block;
+	position: fixed;
 	background-color: white;
 	height: 100%;
 }
@@ -117,9 +212,10 @@ p {
     border-width: 1px 0px 1px 0px;
 }
 
-/** Buttons **/
+/** Mediator Buttons **/
 
 #btn_group, #btn_options {
+
 	background-color: #598ebf;
 }
 
@@ -134,23 +230,27 @@ p {
 	font-size: 44px;
 }
 
-.mdl-menu__container {
-	left: 605px !important;
-    bottom: 118px !important;
-    width: 107.719px !important;
-    height: 169px !important;
+#controllers {
+	margin-top: 42px;
+	text-align: center;
+	position: fixed;
+	height: 8%;
+	width: 75%;
+	display: inline-block;
+	bottom:20px;
 }
 
 /** Video Content **/
 
-#my-video, #their-video {
+.client-video {
 	display: inline-block;
-	width: 100%;
+	width: 42%;
 	position: relative;
 }
 
 #video-container {
-    width:100%;
+	float: left;
+    width:25%;
     height:74%;
     display: block;
     text-align:justify;
@@ -158,6 +258,13 @@ p {
 
 }
 
+.video-window {
+	border:1px solid #000;
+	margin-left: 10px;
+	margin-top: 10px;
+	position: relative;
+	text-align: center;
+}
 #window1, #window2 {
     width:49%;
     float:left;
@@ -166,13 +273,6 @@ p {
     margin-top: 10px;
     position: relative;
 }
-
-#controllers {
-	margin-top: 100px;
-	text-align: center;
-	position: relative;
-}
-
 
 .mdl-textfield .mdl-js-textfield {
 	border-radius: 1em;

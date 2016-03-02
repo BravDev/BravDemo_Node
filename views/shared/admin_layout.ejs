@@ -1,9 +1,8 @@
-
 <!doctype html>
 <html>
 	<head>
 
-    <title>Brav - Mediator</title>
+    <title>Brav - Administrator</title>
     <meta charset="utf-8" />
     <!-- include Peer JS and JQuery -->
 		<script src="../js/peer.min.js"></script>
@@ -12,11 +11,10 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.1.1/material.indigo-pink.min.css">
     <script defer src="https://code.getmdl.io/1.1.1/material.min.js"></script>
-		<link rel="stylesheet" href="/styles/mdl-jquery-modal-dialog.css">
-		<script src="/js/mdl-jquery-modal-dialog.js"></script>
 
-	<!-- Custom CSS -->
-	<link rel="stylesheet" href="/styles/main.css">
+
+		<!-- Custom CSS -->
+		<link rel="stylesheet" href="/styles/main.css">
 
 	</head>
 
@@ -52,32 +50,26 @@
 
 		<div class="demo-list-action mdl-list">
 
-
 			<div class="mdl-list_item" style="background-color: #4b7aa8;">
 			<button class="mdl-button mdl-js-button" id="left_button" style="text-align: left;">
 					<i class="material-icons" style="font-size:38px;color: #1aa3ff">fiber_manual_record</i>
-  					MEDIATOR
+  					ADMIN
 			</button>
 			</div>
 
+			<!-- Partials -->
+
 			<div class="mdl-list_item">
 			<button class="mdl-button mdl-js-button" id="left_button">
-					<i class="material-icons" style="font-size:38px;">insert_drive_file</i>
-  					FILES
+					<i class="material-icons" style="font-size:38px;">voice_chat</i>
+  					SESSION
 			</button>
 			</div>
 
 			<div class="mdl-list_item" style="text-align: center;">
 			<button class="mdl-button mdl-js-button" id="left_button">
   					<i class="material-icons" style="font-size: 38px;">perm_identity</i>
-  					Clients
-			</button>
-			</div>
-
-			<div class="mdl-list_item" style="text-align: center;">
-			<button class="mdl-button mdl-js-button" id="left_button">
-					<i class="material-icons" style="font-size:38px;">voice_chat</i>
-  					Session
+  					ADMIN VIEW
 			</button>
 			</div>
 
@@ -88,16 +80,21 @@
 			  <li class="mdl-list__item">
 			  <i class="material-icons" style="color: #4ddbff; margin-right: 10px;">fiber_manual_record</i>
 			    <span class="mdl-list__item-primary-content">
-			      Client A
+			      Bryan Cranston
 			    </span>
 			  </li>
 			  <li class="mdl-list__item">
 			  <i class="material-icons" style="color: #4ddbff; margin-right: 10px;">fiber_manual_record</i>
 			    <span class="mdl-list__item-primary-content">
-			      Client B
+			      Aaron Paul
 			    </span>
 			  </li>
-
+			  <li class="mdl-list__item">
+			  <i class="material-icons" style="color: #4ddbff; margin-right: 10px;">panorama_fish_eye</i>
+			    <span class="mdl-list__item-primary-content">
+			      Bob Odenkirk
+			    </span>
+			  </li>
 			</ul>
 			</div>
 
@@ -107,18 +104,24 @@
 			  <li class="mdl-list__item">
 			  <i class="material-icons" style="color: #4ddbff; margin-right: 10px;">fiber_manual_record</i>
 			    <span class="mdl-list__item-primary-content">
-			      Client A
+			      Bryan Cranston
 			    </span>
 			  </li>
 			  <li class="mdl-list__item">
 			  <i class="material-icons" style="color: #4ddbff; margin-right: 10px;">fiber_manual_record</i>
 			    <span class="mdl-list__item-primary-content">
-			      Client B
+			      Aaron Paul
 			    </span>
 			  </li>
-
+			  <li class="mdl-list__item">
+			  <i class="material-icons" style="color: #4ddbff; margin-right: 10px;">panorama_fish_eye</i>
+			    <span class="mdl-list__item-primary-content">
+			      Bob Odenkirk
+			    </span>
+			  </li>
 			</ul>
 			</div>
+
 
 		</div>
 	</div>
@@ -128,7 +131,7 @@
 	<main class="mdl-layout__content">
 
 		<div class="page-content">
-		<% include ../pages/mediator %>
+		<% include ../pages/admin_session %>
 		</div>
 
 	</main>
@@ -143,12 +146,9 @@
 			var clientB = id.substr(5, 5);
 			var clientC = id.substr(10, 5);
 
-			var isMediator = false;
-			var isCaucused = false;
 
 			var BinCall = false;
 			var CinCall = false;
-
 			//log the id's
 			console.log(clientA);
 			console.log(clientB);
@@ -157,9 +157,6 @@
 			$(document).ready(function() {
 				//connect to the peering server
 				var peer = new Peer(clientA, {host: '/', port: 9000, path:'../api'});
-
-				//get mediators list from server
-				getMediators();
 
 				//set my stream
 				init();
@@ -173,30 +170,9 @@
 
 				peer.on('connection', function(conn) {
 					conn.on('data', function(data) {
-						if(data === 'caucus') {
-							showDialog({
-								title: 'Action',
-								text: 'Text to display',
-								negative: {
-									title: 'Nope'
-								},
-
-								positive: {
-									title: 'Yay',
-									onClick: function (e) {
-										alert('Action performed!');
-									}
-								}
-							});
-							$('#' + clientB).prop('muted', true);
-							$('#' + clientC).prop('muted', true);
-						} else if(data === 'uncaucus') {
-							$('#' + clientB).prop('muted', false);
-							$('#' + clientC).prop('muted', false);
-						}
-
-						});
+						alert(data);
 					});
+				});
 
 
 				peer.on('call', function(call) {
@@ -217,32 +193,6 @@
 					conn.on('open', function(){
 						conn.send($('#message').val());
 					});
-				});
-
-				$('#caucusA').click(function() {
-						var conn = peer.connect(clientB);
-						conn.on('open', function() {
-							if(isCaucused === true) {
-								conn.send('uncaucus');
-								isCaucused = false;
-							} else {
-								conn.send('caucus');
-								isCaucused = true;
-							}
-						});
-				});
-
-				$('#caucusB').click(function() {
-						var conn = peer.connect(clientC);
-						conn.on('open', function() {
-							if(isCaucused === true) {
-								conn.send('uncaucus');
-								isCaucused = false;
-							} else {
-								conn.send('caucus');
-								isCaucused = true;
-							}
-						});
 				});
 
 				function init() {
@@ -302,24 +252,29 @@
 					$('#video-container').append('<div class="video-window"><video id="' + videoId + '" class="client-video" autoplay muted ></video></div>');
 				}
 
-				function getMediators() {
-					$.ajax({
-  					url: '../mediators.json',
-  					success: function(data) {
-							for(var i in data) {
-								if(data[i].id === id) {
-									isMediator = true;
-									break;
-								}
-							}
-						},
-  					dataType: 'JSON'
-					});
-				}
-
 			});
 
 
+		</script>
+
+		<!-- MDL upgradeElement Function -->
+
+		<script>
+		  var table = document.querySelector('table');
+			var headerCheckbox = table.querySelector('thead .mdl-data-table__select input');
+			var boxes = table.querySelectorAll('tbody .mdl-data-table__select');
+			var headerCheckHandler = function(event) {
+			  if (event.target.checked) {
+			    for (var i = 0, length = boxes.length; i < length; i++) {
+			      boxes[i].MaterialCheckbox.check();
+			    }
+			  } else {
+			    for (var i = 0, length = boxes.length; i < length; i++) {
+			      boxes[i].MaterialCheckbox.uncheck();
+			    }
+			  }
+			};
+			headerCheckbox.addEventListener('change', headerCheckHandler);
 		</script>
 
 	</body>
