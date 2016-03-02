@@ -1,0 +1,257 @@
+<!doctype html>
+<html>
+	<head>
+
+    <title>Brav - Client</title>
+    <meta charset="utf-8" />
+    <!-- include Peer JS and JQuery -->
+		<script src="../js/peer.min.js"></script>
+		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <!-- include Material Design Lite -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.1/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.1.1/material.min.js"></script>
+
+
+		<!-- Custom CSS -->
+		<link rel="stylesheet" href="/styles/main.css">
+
+	</head>
+
+<body>
+	<!-- Fixed Drawer on the left side and header -->
+
+	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+
+	<!--Drawer-->
+
+
+	<div class="mdl-layout__drawer" style="background: #598ebf;border:none;">
+
+		<!-- Top Left Logo -->
+
+		<div class ="logo_box">
+		
+				<span class="mdl-layout-title" id="logo"><img src="/images/brav_.png"  style="width: 74%;" />
+
+				<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn" style="float: right;">
+	            <i class="material-icons" style="font-size: 40px; color: white;left: 25%;">keyboard_arrow_down</i>
+	            </button>
+	            <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
+	            <li class="mdl-menu__item">Profile</li>
+	            <li class="mdl-menu__item">Settings</li>
+	            <li class="mdl-menu__item">Log Out</li>
+	        	</ul>
+
+				</span>
+		</div>
+
+		<!-- Participants Status -->
+
+		<div class="demo-list-action mdl-list">
+
+			<div class="mdl-list_item" style="background-color: #4b7aa8;">
+			<button class="mdl-button mdl-js-button" id="left_button" style="text-align: left;">
+					<i class="material-icons" style="font-size:38px;color: #1aa3ff">fiber_manual_record</i>
+  					[Client Name]
+			</button>
+			</div>
+
+			<div class="mdl-list_item">
+			<button class="mdl-button mdl-js-button" id="left_button">
+					<i class="material-icons" style="font-size:38px;">insert_drive_file</i>
+  					FILES
+			</button>
+			</div>
+
+			<div class="mdl-list_item" style="text-align: center;">
+			<button class="mdl-button mdl-js-button" id="left_button">
+					<i class="material-icons" style="font-size:38px;">voice_chat</i>
+  					Session
+			</button>
+			</div>
+
+			<div class="mdl-list_item" style="background-color: #4b7aa8;">
+			<button class="mdl-button mdl-js-button" id="left_button" style="text-align: left;">
+					<i class="material-icons" style="font-size:38px;color: #1aa3ff">fiber_manual_record</i>
+  					[Mediator Name]
+			</button>
+			</div>
+
+		</div>
+
+		<!-- Status -->
+			<div class="parties">
+			<P style="margin-left: 20px">PARTIES IN CONFLICT</P>
+			<ul class="demo-list-item mdl-list">
+			  <li class="mdl-list__item">
+			  <i class="material-icons" style="color: #4ddbff; margin-right: 10px;">fiber_manual_record</i>
+			    <span class="mdl-list__item-primary-content">
+			      Client A
+			    </span>
+			  </li>
+			  <li class="mdl-list__item">
+			  <i class="material-icons" style="color: #4ddbff; margin-right: 10px;">fiber_manual_record</i>
+			    <span class="mdl-list__item-primary-content">
+			      Client B
+			    </span>
+			  </li>
+			  
+			</ul>
+			</div>
+
+			<div class="guests">
+			<P style="margin-left: 20px">GUESTS</P>
+			<ul class="demo-list-item mdl-list">
+			  <li class="mdl-list__item">
+			  <i class="material-icons" style="color: #4ddbff; margin-right: 10px;">fiber_manual_record</i>
+			    <span class="mdl-list__item-primary-content">
+			      Client A 
+			    </span>
+			  </li>
+			  <li class="mdl-list__item">
+			  <i class="material-icons" style="color: #4ddbff; margin-right: 10px;">fiber_manual_record</i>
+			    <span class="mdl-list__item-primary-content">
+			      Client B
+			    </span>
+			  </li>
+			  
+			</ul>
+			</div>
+
+	</div>
+
+	<!-- Content Area -->
+
+	<main class="mdl-layout__content">
+
+		<div class="page-content">
+		<% include ../pages/client %>
+		</div>
+
+	</main>
+	</div>
+
+
+    <script>
+			//allow to get microphone and camera
+			navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+      var id = '<%= id %>';
+      var clientA = id.substr(0, 5);
+			var clientB = id.substr(5, 5);
+			var clientC = id.substr(10, 5);
+
+
+			var BinCall = false;
+			var CinCall = false;
+			//log the id's
+			console.log(clientA);
+			console.log(clientB);
+			console.log(clientC);
+			//wait to load jquery
+			$(document).ready(function() {
+				//connect to the peering server
+				var peer = new Peer(clientA, {host: '/', port: 9000, path:'../api'});
+
+				//set my stream
+				init();
+
+				//events
+				peer.on('open', function(id) {
+					setInterval(callFirstPerson, 2000);
+					setInterval(callSecondPerson, 2000);
+					setOnlineStatus('A', 'online');
+				});
+
+				peer.on('connection', function(conn) {
+					conn.on('data', function(data) {
+						alert(data);
+					});
+				});
+
+
+				peer.on('call', function(call) {
+					call.answer(window.localStream);
+					addVideoElement(call.peer);
+
+					console.log(call);
+
+					call.on('stream', function(stream) {
+						$('#' + call.peer).prop('src', URL.createObjectURL(stream));
+					 });
+
+				});
+
+
+				$('#send').click(function() {
+					var conn = peer.connect($('#peerId').val());
+					conn.on('open', function(){
+						conn.send($('#message').val());
+					});
+				});
+
+				function init() {
+					navigator.getUserMedia({audio: true, video: true}, function(stream) {
+						addVideoElement(peer.id);
+						$('#' + peer.id).prop('src', URL.createObjectURL(stream));
+						window.localStream = stream;
+						}, function() {
+							 alert('error while init');
+						});
+					}
+
+				function callFirstPerson() {
+					console.log('call attemp');
+					if(BinCall == false) {
+						var call = peer.call(clientB, window.localStream);
+						var conn = peer.connect(clientB);
+							conn.on('open', function() {
+								BinCall = true;
+								setOnlineStatus('B', 'online');
+
+							});
+
+							conn.on('close', function() {
+								BinCall = false;
+								setOnlineStatus('B', 'offline');
+								$('#' + call.peer).parent().remove();
+							});
+
+					}
+
+				}
+
+				function callSecondPerson() {
+					if(CinCall == false) {
+						var call = peer.call(clientC, window.localStream);
+						var conn = peer.connect(clientC);
+							conn.on('open', function() {
+  							//conn.send('hi!');
+								CinCall = true;
+								setOnlineStatus('C', 'online');
+							});
+
+							conn.on('close', function() {
+								CinCall = false;
+								setOnlineStatus('C', 'offline');
+								$('#' + call.peer).parent().remove();
+							});
+					}
+				}
+
+				function setOnlineStatus(client, status) {
+					$('#client' + client +'_status').text('(' + status + ')');
+				}
+
+				function addVideoElement(videoId) {
+					$('#video-container').append('<div class="video-window"><video id="' + videoId + '" class="client-video" autoplay muted ></video></div>');
+				}
+
+			});
+
+
+		</script>
+
+	</body>
+
+</html>
