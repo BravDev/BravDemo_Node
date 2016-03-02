@@ -174,9 +174,12 @@
 				peer.on('connection', function(conn) {
 					conn.on('data', function(data) {
 						if(data === 'caucus') {
+							$('#' + clientA).prop('muted', true);
+							$('#' + clientB).prop('muted', true);
+							$('#' + clientC).prop('muted', true);
 							showDialog({
-								title: 'Action',
-								text: 'Text to display',
+								title: 'Caucus',
+								text: 'You were caucused',
 								negative: {
 									title: 'Nope'
 								},
@@ -188,10 +191,10 @@
 									}
 								}
 							});
-							$('#' + clientB).prop('muted', true);
-							$('#' + clientC).prop('muted', true);
+
 						} else if(data === 'uncaucus') {
-							$('#' + clientB).prop('muted', false);
+							$('#' + clientA).prop('muted', false);
+							$('#' + clientC).prop('muted', false);
 							$('#' + clientC).prop('muted', false);
 						}
 
@@ -209,14 +212,6 @@
 						$('#' + call.peer).prop('src', URL.createObjectURL(stream));
 					 });
 
-				});
-
-
-				$('#send').click(function() {
-					var conn = peer.connect($('#peerId').val());
-					conn.on('open', function(){
-						conn.send($('#message').val());
-					});
 				});
 
 				$('#caucusA').click(function() {
@@ -299,7 +294,7 @@
 				}
 
 				function addVideoElement(videoId) {
-					$('#video-container').append('<div class="video-window"><video id="' + videoId + '" class="client-video" autoplay muted ></video></div>');
+					$('#video-container').append('<div class="video-window"><video id="' + videoId + '" class="client-video" muted="false" autoplay ></video></div>');
 				}
 
 				function getMediators() {
