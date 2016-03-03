@@ -55,7 +55,7 @@ p {
 
 #left_button {
 	color: white;
-	height: 75px;
+	height: 60px;
 	min-width: 100%;
 	letter-spacing: 0.05em;
 	font-size: 21px;
@@ -147,7 +147,7 @@ p {
 
 .mediator_video {
 	height: 100%;
-	width: 85%;
+	width: 79%;
 	float: left;
 	display: inline-block;
 }
@@ -162,26 +162,47 @@ p {
 	bottom:20px;
 }
 
-#mediator_video_main {
-	height: 35%;
-	display: inline-block;
+.mediator_top_video_windows {
 	width: 100%;
+	height: 46%
+}
+
+#mediator_video_main {
+	float: left;
+	height: 100%;
+	display: inline-block;
+	width: 50%;
 	position: relative;
 }
 
 #mediator_video_alt {
-	width: 100%;
-	height: 35%;
+	float: left;
+	width: 50%;
+	height: 100%;
 	display: inline-block;
 	position: relative;
-	bottom: 7%;
 }
+
+.mediator_bottom_video_window {
+	height: 30%;
+	width: 100%;
+	display: inline-block;
+}
+
+#mediator_video_small {
+	text-align: center;
+}
+
+#orrsDiag > div {
+	height: 400px;
+}
+
 
 /*** Mediator Right Side Bar **/
 
 .right_sidebar {
 	float: left;
-	width: 15%;
+	width: 18%;
 	display: inline-block;
 	position: fixed;
 	background-color: white;
@@ -240,17 +261,66 @@ p {
 	bottom:20px;
 }
 
+/** Client **/
+
+.client_video {
+	height: 100%;
+	width: 79%;
+	float: left;
+	display: inline-block;
+}
+
+
+#client_controllers {
+	margin-top: 42px;
+	text-align: center;
+	position: fixed;
+	height: 8%;
+	width: 75%;
+	bottom:20px;
+}
+
+.client_top_video_windows {
+	width: 100%;
+	height: 46%
+}
+
+#client_video_main {
+	float: left;
+	height: 100%;
+	display: inline-block;
+	width: 50%;
+	position: relative;
+}
+
+#client_video_alt {
+	float: left;
+	width: 50%;
+	height: 100%;
+	display: inline-block;
+	position: relative;
+}
+
+.client_bottom_video_window {
+	height: 30%;
+	width: 100%;
+	display: inline-block;
+}
+
+#client_video_small {
+	text-align: center;
+}
 /** Video Content **/
 
 .client-video {
 	display: inline-block;
-	width: 42%;
+	width: 80%;
 	position: relative;
 }
 
 #video-container {
 	float: left;
-    width:25%;
+    width:100%;
     height:74%;
     display: block;
     text-align:justify;
@@ -260,8 +330,7 @@ p {
 
 .video-window {
 	border:1px solid #000;
-	margin-left: 10px;
-	margin-top: 10px;
+	margin-left: 5px;
 	position: relative;
 	text-align: center;
 }

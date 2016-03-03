@@ -227,6 +227,7 @@
 							var conn2 = peer.connect(clientC);
 							conn2.on('open', function() {
 									//client C mute / unmute client B
+									console.log('you should mute ' + clientB);
 									conn2.send(clientB);
 							});
 
@@ -253,6 +254,7 @@
 							var conn2 = peer.connect(clientB);
 							conn2.on('open', function() {
 									//client B mute / unmute client C
+									console.log('you should mute ' + clientC);
 									conn2.send(clientC);
 							});
 
@@ -280,7 +282,11 @@
 
 				function init() {
 					navigator.getUserMedia({audio: true, video: true}, function(stream) {
-						addVideoElement(peer.id);
+						$('#my-video').prop('src', URL.createObjectURL(stream));
+						$('#videoA').prop('src', URL.createObjectURL(stream));
+						$('#videoB').prop('src', URL.createObjectURL(stream));
+						//addVideoElement(peer.id);
+
 						$('#' + peer.id).prop('src', URL.createObjectURL(stream));
 						window.localStream = stream;
 						}, function() {
