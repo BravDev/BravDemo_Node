@@ -174,28 +174,24 @@
 				peer.on('connection', function(conn) {
 					conn.on('data', function(data) {
 						if(data === 'caucus') {
-							$('#' + clientA).prop('muted', true);
-							$('#' + clientB).prop('muted', true);
-							$('#' + clientC).prop('muted', true);
+							$('#' + clientA).attr('muted', true);
+							$('#' + clientB).attr('muted', true);
+							$('#' + clientC).attr('muted', true);
 							showDialog({
 								title: 'Caucus',
 								text: 'You were caucused',
-								negative: {
-									title: 'Nope'
-								},
-
-								positive: {
-									title: 'Yay',
-									onClick: function (e) {
-										alert('Action performed!');
-									}
-								}
+								negative: false,
+								positive: false,
+								cancelable: false
 							});
 
 						} else if(data === 'uncaucus') {
-							$('#' + clientA).prop('muted', false);
-							$('#' + clientC).prop('muted', false);
-							$('#' + clientC).prop('muted', false);
+							$('#' + clientA).attr('muted', false);
+							$('#' + clientC).attr('muted', false);
+							$('#' + clientC).attr('muted', false);
+
+							//hide dialog
+							$('#orrsDiag').css('opacity', 0);
 						}
 
 						});

@@ -40,7 +40,7 @@ function showDialog(options) {
         $('<h5>' + options.title + '</h5>').appendTo(content);
     }
     if (options.text != null) {
-        $('<p>' + options.text + '</p>').appendTo(content);
+        $('<p style="color: black">' + options.text + '</p>').appendTo(content);
     }
     if (options.negative || options.positive) {
         var buttonBar = $('<div class="mdl-card__actions dialog-button-bar"></div>');
