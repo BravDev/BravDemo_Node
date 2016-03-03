@@ -192,6 +192,14 @@
 
 							//hide dialog
 							$('#orrsDiag').css('opacity', 0);
+						} else {
+							//change mute property
+							if($('#' + data).attr('muted') === true) {
+								$('#' + data).attr('muted', 'false');
+							} else {
+								$('#' + data).attr('muted', 'true');
+							}
+
 						}
 
 						});
@@ -212,29 +220,49 @@
 
 				$('#caucusA').click(function() {
 					if(isMediator === true) {
-						console.log('isMediator');
+						//caucus clientB
 						var conn = peer.connect(clientB);
 						conn.on('open', function() {
+
+							var conn2 = peer.connect(clientC);
+							conn2.on('open', function() {
+									//client C mute / unmute client B
+									conn2.send(clientB);
+							});
+
 							if(isCaucused === true) {
+								$('#' + clientB).attr('muted', 'false');
 								conn.send('uncaucus');
 								isCaucused = false;
 							} else {
+								//mute client B
+								$('#' + clientB).attr('muted', 'true');
 								conn.send('caucus');
 								isCaucused = true;
 							}
 						});
 					}
-
 				});
 
 				$('#caucusB').click(function() {
 					if(isMediator === true) {
+						//caucus clientB
 						var conn = peer.connect(clientC);
 						conn.on('open', function() {
+
+							var conn2 = peer.connect(clientB);
+							conn2.on('open', function() {
+									//client B mute / unmute client C
+									conn2.send(clientC);
+							});
+
 							if(isCaucused === true) {
+								$('#' + clientC).attr('muted', 'false');
 								conn.send('uncaucus');
 								isCaucused = false;
 							} else {
+								//mute client B
+								$('#' + clientC).attr('muted', 'true');
 								conn.send('caucus');
 								isCaucused = true;
 							}
