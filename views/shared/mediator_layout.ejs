@@ -240,6 +240,14 @@
 						});
 				});
 
+				$('#silentA').click(function() {
+					$('#' + clientB).attr('muted', 'true');
+				});
+
+				$('#silentB').click(function() {
+					$('#' + clientC).attr('muted', 'true');
+				});
+
 				function init() {
 					navigator.getUserMedia({audio: true, video: true}, function(stream) {
 						addVideoElement(peer.id);
