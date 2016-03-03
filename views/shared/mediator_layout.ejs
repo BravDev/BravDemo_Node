@@ -211,6 +211,8 @@
 				});
 
 				$('#caucusA').click(function() {
+					if(isMediator === true) {
+						console.log('isMediator');
 						var conn = peer.connect(clientB);
 						conn.on('open', function() {
 							if(isCaucused === true) {
@@ -221,9 +223,12 @@
 								isCaucused = true;
 							}
 						});
+					}
+
 				});
 
 				$('#caucusB').click(function() {
+					if(isMediator === true) {
 						var conn = peer.connect(clientC);
 						conn.on('open', function() {
 							if(isCaucused === true) {
@@ -234,6 +239,7 @@
 								isCaucused = true;
 							}
 						});
+					}
 				});
 
 				$('#silentA').click(function() {
@@ -306,11 +312,14 @@
   					url: '../mediators.json',
   					success: function(data) {
 							for(var i in data) {
-								if(data[i].id === id) {
+								if(data[i].id === clientA) {
 									isMediator = true;
 									break;
 								}
 							}
+						},
+						error: function(err) {
+							alert(err);
 						},
   					dataType: 'JSON'
 					});
