@@ -174,9 +174,9 @@
 				peer.on('connection', function(conn) {
 					conn.on('data', function(data) {
 						if(data === 'caucus') {
-							$('#' + clientA).attr('muted', true);
-							$('#' + clientB).attr('muted', true);
-							$('#' + clientC).attr('muted', true);
+							$('#my-video').attr('muted', true);
+							$('#videoA').attr('muted', true);
+							$('#videoB').attr('muted', true);
 							showDialog({
 								title: 'Caucus',
 								text: 'You were caucused',
@@ -186,18 +186,24 @@
 							});
 
 						} else if(data === 'uncaucus') {
-							$('#' + clientA).attr('muted', false);
-							$('#' + clientC).attr('muted', false);
-							$('#' + clientC).attr('muted', false);
+							$('#my-video').attr('muted', false);
+							$('#videoA').attr('muted', false);
+							$('#videoB').attr('muted', false);
 
 							//hide dialog
 							$('#orrsDiag').css('opacity', 0);
 						} else {
 							//change mute property
-							if($('#' + data).attr('muted') === true) {
-								$('#' + data).attr('muted', 'false');
+							var mutedId;
+							if(data === clientB) {
+								mutedId = 'videoA';
 							} else {
-								$('#' + data).attr('muted', 'true');
+								mutedId = 'videoB';
+							}
+							if($('#' + mutedId).attr('muted') === true) {
+								$('#' + mutedId).attr('muted', 'false');
+							} else {
+								$('#' + mutedId).attr('muted', 'true');
 							}
 
 						}
@@ -208,12 +214,14 @@
 
 				peer.on('call', function(call) {
 					call.answer(window.localStream);
-					addVideoElement(call.peer);
-
-					console.log(call);
 
 					call.on('stream', function(stream) {
-						$('#' + call.peer).prop('src', URL.createObjectURL(stream));
+						if(call.peer == clientB) {
+							$('#videoA').prop('src', URL.createObjectURL(stream));
+						} else {
+							$('#videoB').prop('src', URL.createObjectURL(stream));
+						}
+
 					 });
 
 				});
@@ -226,18 +234,16 @@
 
 							var conn2 = peer.connect(clientC);
 							conn2.on('open', function() {
-									//client C mute / unmute client B
-									console.log('you should mute ' + clientB);
 									conn2.send(clientB);
 							});
 
 							if(isCaucused === true) {
-								$('#' + clientB).attr('muted', 'false');
+								$('#videoA').attr('muted', 'false');
 								conn.send('uncaucus');
 								isCaucused = false;
 							} else {
 								//mute client B
-								$('#' + clientB).attr('muted', 'true');
+								$('#videoA').attr('muted', 'true');
 								conn.send('caucus');
 								isCaucused = true;
 							}
@@ -253,18 +259,16 @@
 
 							var conn2 = peer.connect(clientB);
 							conn2.on('open', function() {
-									//client B mute / unmute client C
-									console.log('you should mute ' + clientC);
 									conn2.send(clientC);
 							});
 
 							if(isCaucused === true) {
-								$('#' + clientC).attr('muted', 'false');
+								$('#videoB').attr('muted', 'false');
 								conn.send('uncaucus');
 								isCaucused = false;
 							} else {
 								//mute client B
-								$('#' + clientC).attr('muted', 'true');
+								$('#videoB').attr('muted', 'true');
 								conn.send('caucus');
 								isCaucused = true;
 							}
@@ -273,21 +277,17 @@
 				});
 
 				$('#silentA').click(function() {
-					$('#' + clientB).attr('muted', 'true');
+					$('#videoA').attr('muted', 'true');
 				});
 
 				$('#silentB').click(function() {
-					$('#' + clientC).attr('muted', 'true');
+					$('#videoB').attr('muted', 'true');
 				});
 
 				function init() {
 					navigator.getUserMedia({audio: true, video: true}, function(stream) {
 						$('#my-video').prop('src', URL.createObjectURL(stream));
-						$('#videoA').prop('src', URL.createObjectURL(stream));
-						$('#videoB').prop('src', URL.createObjectURL(stream));
-						//addVideoElement(peer.id);
 
-						$('#' + peer.id).prop('src', URL.createObjectURL(stream));
 						window.localStream = stream;
 						}, function() {
 							 alert('error while init');
@@ -308,7 +308,6 @@
 							conn.on('close', function() {
 								BinCall = false;
 								setOnlineStatus('B', 'offline');
-								$('#' + call.peer).parent().remove();
 							});
 
 					}
@@ -320,7 +319,6 @@
 						var call = peer.call(clientC, window.localStream);
 						var conn = peer.connect(clientC);
 							conn.on('open', function() {
-  							//conn.send('hi!');
 								CinCall = true;
 								setOnlineStatus('C', 'online');
 							});
@@ -328,7 +326,6 @@
 							conn.on('close', function() {
 								CinCall = false;
 								setOnlineStatus('C', 'offline');
-								$('#' + call.peer).parent().remove();
 							});
 					}
 				}
