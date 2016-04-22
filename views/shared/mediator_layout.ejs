@@ -289,8 +289,8 @@
 						$('#my-video').prop('src', URL.createObjectURL(stream));
 
 						window.localStream = stream;
-						}, function() {
-							 alert('error while init');
+					}, function(err) {
+							 alert(err);
 						});
 					}
 
