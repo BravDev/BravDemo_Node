@@ -9,6 +9,9 @@
  * http://sailsjs.org/#!/documentation/reference/sails.config/sails.config.http.html
  */
 
+ var fs = require('fs');
+
+
 module.exports.http = {
 
   customMiddleware: function(app) {
@@ -19,6 +22,19 @@ module.exports.http = {
     var PeerServer = require('peer').PeerServer;
     var server = PeerServer({port: 9000, path: '/api'});
 
+  },
+
+  express: {
+        serverOptions : {
+            key: fs.readFileSync(__dirname + '/localhost.key'),
+            cert: fs.readFileSync(__dirname + '/localhost.csr')
+        }
+
+
+  },
+  ssl : {
+    key: fs.readFileSync(__dirname + '/localhost.key'),
+    cert: fs.readFileSync(__dirname + '/localhost.csr')
   }
   /****************************************************************************
   *                                                                           *
