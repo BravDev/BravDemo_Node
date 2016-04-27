@@ -20,5 +20,13 @@ module.exports = {
   // models: {
   //   connection: 'someMongodbServer'
   // }
-
+  ssl: {
+     key: require('fs').readFileSync(__dirname + '/198.211.106.219.key'),
+     cert: require('fs').readFileSync(__dirname + '/198.211.106.219.csr')
+   },
+ port: 443,
+ policies: {
+    '*': 'isHTTPS'
+  }
+  
 };
