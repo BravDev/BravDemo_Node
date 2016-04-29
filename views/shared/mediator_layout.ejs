@@ -156,7 +156,7 @@
 			//wait to load jquery
 			$(document).ready(function() {
 				//connect to the peering server
-				var peer = new Peer(clientA, {host: '/', port: 9000, path:'../api'});
+				var peer = new Peer(clientA, {host: '/', port: 8080, path:'/', proxied: true});
 
 				//get mediators list from server
 				getMediators();

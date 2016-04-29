@@ -10,6 +10,8 @@
  */
 
  var fs = require('fs');
+ var https = require('https');
+ var pem = require('pem');
 
 
 module.exports.http = {
@@ -19,8 +21,13 @@ module.exports.http = {
       debug: true
     };
 
-    var PeerServer = require('peer').PeerServer;
-    var server = PeerServer({port: 9000, path: '/api'});
+    pem.createCertificate({days:1, selfSigned:true}, function(err, keys) {
+        var PeerServer = require('peer').PeerServer;
+        var server = PeerServer({port: 9000, path: '/api', proxied: true});
+
+        https.createServer({key: keys.serviceKey, cert: keys.certificate}, app).listen(443);
+        https.createServer({key: keys.serviceKey, cert: keys.certificate}, server).listen(8080);
+    });
 
   },
 
