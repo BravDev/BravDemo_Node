@@ -12,6 +12,7 @@
  var fs = require('fs');
  var https = require('https');
  var pem = require('pem');
+ var PeerServer = require('peer').PeerServer;
 
 
 module.exports.http = {
@@ -21,12 +22,19 @@ module.exports.http = {
       debug: true
     };
 
-    pem.createCertificate({days:1, selfSigned:true}, function(err, keys) {
-        var PeerServer = require('peer').PeerServer;
-        var server = PeerServer({port: 9000, path: '/api', proxied: true});
+    var server = PeerServer({
+      port: 9000,
+      ssl: {
+        key: fs.readFileSync(__dirname + '/server.key'),
+        cert: fs.readFileSync(__dirname + '/server.crt')
+      }
+    });
 
-        https.createServer({key: keys.serviceKey, cert: keys.certificate}, app).listen(443);
-        https.createServer({key: keys.serviceKey, cert: keys.certificate}, server).listen(8080);
+    pem.createCertificate({days:1, selfSigned:true}, function(err, keys) {
+      https.createServer({key: keys.serviceKey, cert: keys.certificate}, app).listen(443);
+    //  var PeerServer = require('peer').PeerServer;
+    //  var server = PeerServer({port: 9000, path: '/api'});
+      //https.createServer({key: keys.serviceKey, cert: keys.certificate}, server).listen(8080);
     });
 
   },
@@ -40,8 +48,8 @@ module.exports.http = {
 
   },
   ssl : {
-    key: fs.readFileSync(__dirname + '/localhost.key'),
-    cert: fs.readFileSync(__dirname + '/localhost.csr')
+    key: fs.readFileSync(__dirname + '/server.key'),
+    cert: fs.readFileSync(__dirname + '/server.csr')
   }
   /****************************************************************************
   *                                                                           *
