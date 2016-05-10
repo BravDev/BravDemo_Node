@@ -163,7 +163,7 @@
 
 				//set my stream
 				init();
-
+				$('.videocam-off').hide();	
 				//events
 				peer.on('open', function(id) {
 					setInterval(callFirstPerson, 2000);
@@ -283,6 +283,28 @@
 				$('#silentB').click(function() {
 					$('#videoB').attr('muted', 'true');
 				});
+				
+				$('#btn_hangoff').click(function(){
+					debugger;
+					if($('.videocam-off').css('display') === 'none'){
+						$('.videocam-on').hide();
+						$('.videocam-off').show();
+						//$('#my-video').pause();
+						$('#my-video').prop('src', "");
+						window.localStream.getVideoTracks()[0].enabled = false;	
+						peer.on('call', function(call) {
+							call.answer("");
+						});
+					} else {
+						$('.videocam-off').hide();
+						$('.videocam-on').show();
+						window.localStream.getVideoTracks()[0].enabled = true;
+						init();
+					}
+					
+					
+				});
+			
 
 				function init() {
 					navigator.getUserMedia({audio: true, video: true}, function(stream) {
@@ -292,7 +314,7 @@
 					}, function(err) {
 							 alert(err);
 						});
-					}
+					}	
 
 				function callFirstPerson() {
 					console.log('call attemp');
