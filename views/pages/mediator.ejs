@@ -82,10 +82,17 @@
 <!-- Right Sidebar-->
 
 <div class="right_sidebar">
-
+<div ng-controller="NotesCtrl as notes" style="height:45%; overflow-y:scroll">
 		<div style="width: 100%;background-color: #598ebf; height: 40px;">
     		<p style="margin-top:8px;margin-left: 10px;color: white;font-size: 23px;display: inline-block;">NOTES</p>
-
+						<abbr title="Add Notes"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"
+										ng-click="addNotes()" style="float:right">	
+								<i class="material-icons">add</i>
+							</button></abbr>
+								<abbr title="Remove Notes Notes"><button class="mdl-button mdl-js-button mdl-button--raised"
+										ng-click="removeNotes()" style="float:right">	
+								<i class="material-icons">remove</i>
+							</button></abbr>
     	</div>
 
 	<div class="checklist">
@@ -93,15 +100,16 @@
 		<!-- Floating Multiline Textfield -->
 		<form action="#">
 		  <div class="mdl-textfield mdl-js-textfield">
-		    <textarea class="mdl-textfield__input" type="text" rows= "15" id="sample5" ></textarea>
-		    <label class="mdl-textfield__label" for="sample5">
-		    	.....
-		    </label>
+		    <textarea class="mdl-textfield__input" type="text"  placeholder="Type here..." ng-model="formData" rows= "3" id="sample5" ></textarea>
 		  </div>
 		</form>
 
 	</div>
-
+	<div class="checkbox" ng-repeat="singleNote in notes">
+			<input type="checkbox" class="notesCheckbox" ng-model="isChecked" ng-click="notes.removeNotes(singleNote)">
+			{{singleNote}}
+	</div>
+</div>
 	<div class="chat">
 
 
