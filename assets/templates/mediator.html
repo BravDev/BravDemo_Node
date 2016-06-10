@@ -1,0 +1,142 @@
+<div class="mediator_video">
+
+	<div class="mdl-grid">
+
+			<div class="mdl-cell mdl-cell--2-col session_list">
+
+			<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" style="background-color:red;height:43px;margin:5px 18px 5px 18px;width:133px;">
+			<i class="material-icons" style="font-size: 40px; color: white;">fiber_manual_record</i>
+  				REC
+			</button>
+
+			</div>
+
+			<div class="mdl-layout-spacer"></div>
+
+			<div class="live_help">
+				<button class="mdl-button mdl-js-button mdl-button--fab" style="margin:10px 30px 7px 23px;">
+				<i class="material-icons" style="font-size:80px;left:10%; color:red;">error</i>
+				</button>
+				<p style="text-align:center;margin-bottom:0px;">LIVE HELP</p>
+			</div>
+
+	</div>
+
+	<div class="mediator_top_video_windows">
+
+		<div id="mediator_video_main">
+			<p style="margin-left:15px;margin-bottom:0">CLIENT A</p>
+			<video id="videoA" autoplay="true" width="100%"> <video>
+		</div>
+
+		<div id="mediator_video_alt">
+			<p style="margin-left:15px;margin-bottom:0">CLIENT B</p>
+			<video id="videoB" autoplay="true" width="100%"> <video>
+
+		</div>
+
+	</div>
+
+	<div class="mediator_bottom_video_window">
+
+		<div id="mediator_video_small">
+			<p style="margin-left:15px;margin-bottom:0">My Video</p>
+			<video id="my-video" autoplay="true" width="40%"> <video>
+
+		</div>
+
+	</div>
+
+	<div id="mediator_controllers">
+
+		<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--fab" id="btn_group">
+		  <i class="material-icons" id="icons">group</i>
+		</button>
+
+		<ul class="mdl-menu mdl-menu--top-left mdl-js-menu mdl-js-ripple-effect" data-mdl-for="btn_group">
+		  <li class="mdl-menu__item" id="caucusA">Caucus Client A</li>
+		  <li class="mdl-menu__item" id="caucusB">Caucus Client B</li>
+		</ul>
+
+		<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--fab" id="btn_options">
+		  <i class="material-icons" id="icons">more_horiz</i>
+		</button>
+
+		<ul class="mdl-menu mdl-menu--top-left mdl-js-menu mdl-js-ripple-effect" data-mdl-for="btn_options">
+		  <li class="mdl-menu__item" id="silentA">Sient Client A</li>
+		  <li class="mdl-menu__item" id="silentB">Silent Client B</li>
+		  <li class="mdl-menu__item">Return to Session</li>
+		</ul>
+
+		<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--fab" id="btn_hangoff">
+		  <i class="material-icons videocam-on" id="icons">videocam_on</i>
+			<i class="material-icons videocam-off" id="icons" style="display:none">videocam_off</i>
+		</button>
+
+	</div>
+
+</div>
+
+<!-- Right Sidebar-->
+
+<div class="right_sidebar">
+<div ng-controller="NotesCtrl as notes" style="height:45%; overflow-y:scroll">
+		<div style="width: 100%;background-color: #598ebf; height: 40px;">
+    		<p style="margin-top:8px;margin-left: 10px;color: white;font-size: 23px;display: inline-block;">NOTES</p>
+						<abbr title="Add Notes"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"
+										ng-click="addNotes()" style="float:right">	
+								<i class="material-icons">add</i>
+							</button></abbr>
+								<abbr title="Remove Notes Notes"><button class="mdl-button mdl-js-button mdl-button--raised"
+										ng-click="removeNotes()" style="float:right">	
+								<i class="material-icons">remove</i>
+							</button></abbr>
+    	</div>
+
+	<div class="checklist">
+
+		<!-- Floating Multiline Textfield -->
+		<form action="#">
+		  <div class="mdl-textfield mdl-js-textfield">
+		    <textarea class="mdl-textfield__input" type="text"  placeholder="Type here..." ng-model="formData" rows= "3" id="sample5" ></textarea>
+		  </div>
+		</form>
+
+	</div>
+	<div class="checkbox" ng-repeat="singleNote in notes"  style="padding-left:10%">
+			<input type="checkbox" class="notesCheckbox" ng-model="isChecked" ng-click="notes.removeNotes(singleNote)">
+			{{singleNote}}
+	</div>
+</div>
+	<div class="chat">
+
+
+		<div style="width: 100%;background-color: #598ebf; height: 40px;">
+
+    		<p style="margin-top:8px;margin-left: 10px;color: white;font-size: 23px;display: inline-block;">CHAT</p>
+    	</div>
+
+    <!-- Message Box -->
+    	<div class="messages">
+
+    	</div>
+
+    	<div class="input_box">
+    	<div>
+	          <div class="mdl-textfield mdl-js-textfield">
+	            <input class="mdl-textfield__input" type="text" id="sample1">
+	            <label class="mdl-textfield__label" for="sample1">Type to chat</label>
+	          </div>
+
+	          <!-- Raised button -->
+
+	          <button class="mdl-button mdl-js-button mdl-button--raised" style="background-color: #598ebf;color: white;">
+	            Send
+	          </button>
+	    </div>
+
+		</div>
+
+		</div>
+
+</div>

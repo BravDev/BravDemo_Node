@@ -12,7 +12,7 @@ module.exports = {
     });
   },
   removeNotes: function(todoVal, next) {
-    console.log("service"+todoVal);
+
     Notes.destroy({value: todoVal}).exec(function(err, todo) {
       if(err) throw err;
       next(todo);

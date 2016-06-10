@@ -32,15 +32,22 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': {
+ /* '/': {
     view: 'homepage'
   },
-
+    //'get /mediator/readDocFile': {
+    //controller: 'MediatorController',
+   // action: 'readDocFile',
+   // skipAssets: true
+  //},
+/*
   '/mediator/:id': {
     controller: 'MediatorController',
     action: 'index',
     skipAssets: true
   }
+ */
+
 
   /***************************************************************************
   *                                                                          *

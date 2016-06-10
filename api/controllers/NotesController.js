@@ -19,7 +19,6 @@ module.exports = {
     },
     removeNotes: function(req, res) {
        var notesVal = (req.body.value) ? req.body.value : undefined
-       console.log("controller"+notesVal);
         NotesService.removeNotes(notesVal, function(success) {
             res.json(success);
         });
