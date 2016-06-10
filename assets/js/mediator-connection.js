@@ -1,146 +1,7 @@
-
-<!doctype html>
-<html>
-	<head>
-
-    <title>Brav - Mediator</title>
-    <meta charset="utf-8" />
-    <!-- include Peer JS and JQuery -->
-		<script src="../js/peer.min.js"></script>
-		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-    <!-- include Material Design Lite -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.1.1/material.indigo-pink.min.css">
-    <script defer src="https://code.getmdl.io/1.1.1/material.min.js"></script>
-		<link rel="stylesheet" href="/styles/mdl-jquery-modal-dialog.css">
-		<script src="/js/mdl-jquery-modal-dialog.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
-<script src="/js/app.js"></script>
-<script src="/js/services/NotesService.js"></script>
-	<!-- Custom CSS -->
-	<link rel="stylesheet" href="/styles/main.css">
-
-	</head>
-
-<body ng-app="BravChat">
-	<!-- Fixed Drawer on the left side and header -->
-
-	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
-
-	<!--Drawer-->
-
-
-	<div class="mdl-layout__drawer" style="background: #598ebf;border:none;">
-
-		<!-- Top Left Logo -->
-
-		<div class ="logo_box">
-
-				<span class="mdl-layout-title" id="logo"><img src="/images/brav_.png"  style="width: 74%;" />
-
-				<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn" style="float: right;">
-	            <i class="material-icons" style="font-size: 40px; color: white;left: 25%;">keyboard_arrow_down</i>
-	            </button>
-	            <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
-	            <li class="mdl-menu__item">Profile</li>
-	            <li class="mdl-menu__item">Settings</li>
-	            <li class="mdl-menu__item">Log Out</li>
-	        	</ul>
-
-				</span>
-		</div>
-
-		<!-- Participants Status -->
-
-		<div class="demo-list-action mdl-list">
-
-
-			<div class="mdl-list_item" style="background-color: #4b7aa8;">
-			<button class="mdl-button mdl-js-button" id="left_button" style="text-align: left;">
-					<i class="material-icons" style="font-size:15px;color: #1aa3ff">fiber_manual_record</i>
-  					MEDIATOR
-			</button>
-			</div>
-
-			<div class="mdl-list_item">
-			<button class="mdl-button mdl-js-button" id="left_button">
-					<i class="material-icons" style="font-size:15px;">insert_drive_file</i>
-  					FILES
-			</button>
-			</div>
-
-			<div class="mdl-list_item" style="text-align: center;">
-			<button class="mdl-button mdl-js-button" id="left_button">
-  					<i class="material-icons" style="font-size: 15px;">perm_identity</i>
-  					Clients
-			</button>
-			</div>
-
-			<div class="mdl-list_item" style="text-align: center;">
-			<button class="mdl-button mdl-js-button" id="left_button">
-					<i class="material-icons" style="font-size:25px;">voice_chat</i>
-  					Session
-			</button>
-			</div>
-
-			<!-- Status -->
-			<div class="parties">
-			<P style="margin-left: 20px">PARTIES IN CONFLICT</P>
-			<ul class="demo-list-item mdl-list">
-			  <li class="mdl-list__item">
-			  <i class="material-icons" style="color: #4ddbff; margin-right: 10px;">fiber_manual_record</i>
-			    <span class="mdl-list__item-primary-content">
-			      Client A
-			    </span>
-			  </li>
-			  <li class="mdl-list__item">
-			  <i class="material-icons" style="color: #4ddbff; margin-right: 10px;">fiber_manual_record</i>
-			    <span class="mdl-list__item-primary-content">
-			      Client B
-			    </span>
-			  </li>
-
-			</ul>
-			</div>
-
-			<div class="guests">
-			<P style="margin-left: 20px">GUESTS</P>
-			<ul class="demo-list-item mdl-list">
-			  <li class="mdl-list__item">
-			  <i class="material-icons" style="color: #4ddbff; margin-right: 10px;">fiber_manual_record</i>
-			    <span class="mdl-list__item-primary-content">
-			      Client A
-			    </span>
-			  </li>
-			  <li class="mdl-list__item">
-			  <i class="material-icons" style="color: #4ddbff; margin-right: 10px;">fiber_manual_record</i>
-			    <span class="mdl-list__item-primary-content">
-			      Client B
-			    </span>
-			  </li>
-
-			</ul>
-			</div>
-
-		</div>
-	</div>
-
-	<!-- Content Area -->
-
-	<main class="mdl-layout__content" style="overflow:hidden">
-
-		<div class="page-content">
-		<% include ../pages/mediator %>
-		</div>
-
-	</main>
-	</div>
-
-
-    <script>
-			//allow to get microphone and camera
+		//allow to get microphone and camera
 			navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
-      var id = '<%= id %>';
+			var url = document.URL;
+			var id = url.substring(url.lastIndexOf('/')+1);
       var clientA = id.substr(0, 5);
 			var clientB = id.substr(5, 5);
 			var clientC = id.substr(10, 5);
@@ -158,14 +19,17 @@
 			//wait to load jquery
 			$(document).ready(function() {
 				//connect to the peering server
-				var peer = new Peer(clientA, {host: '/', path:'/', port: 9000});
+				var peer = new Peer(clientA, {host: '/', port: 9000, path:'../api'});
 
 				//get mediators list from server
 				getMediators();
 
 				//set my stream
 				init();
-				$('.videocam-off').hide();	
+				// $(document).on("domReady", "videocam-off", function(){
+				// 	$('.videocam-off').hide();	
+				// });
+				
 				//events
 				peer.on('open', function(id) {
 					setInterval(callFirstPerson, 2000);
@@ -285,8 +149,7 @@
 				$('#silentB').click(function() {
 					$('#videoB').attr('muted', 'true');
 				});
-				
-				$('#btn_hangoff').click(function(){
+				$(document).on("click", "#btn_hangoff", function(){
 					debugger;
 					if($('.videocam-off').css('display') === 'none'){
 						$('.videocam-on').hide();
@@ -302,7 +165,7 @@
 						$('.videocam-on').show();
 						window.localStream.getVideoTracks()[0].enabled = true;
 						init();
-					}
+					};
 					
 					
 				});
@@ -382,10 +245,3 @@
 				}
 
 			});
-
-
-		</script>
-
-	</body>
-
-</html>

@@ -6,7 +6,13 @@
  */
 
 module.exports = {
-	index: function(req, res) {
-		res.render('pages/mediator', {_layoutFile: '../shared/mediator_layout.ejs', id: req.param('id')});
+
+	readDocFile : function(req , res) {
+
+		   sails.office.readFile("photoconsent.docx", function (err, bodyObject) {
+				if(err) throw err
+
+				return res.send(bodyObject);
+		})
 	}
 };

@@ -68,11 +68,9 @@
 		  <li class="mdl-menu__item">Return to Session</li>
 		</ul>
 
-		<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--fab"
-
-		id="btn_hangoff">
+		<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--fab" id="btn_hangoff">
 		  <i class="material-icons videocam-on" id="icons">videocam_on</i>
-			<i class="material-icons videocam-off" id="icons">videocam_off</i>
+			<i class="material-icons videocam-off" id="icons" style="display:none">videocam_off</i>
 		</button>
 
 	</div>
@@ -105,7 +103,7 @@
 		</form>
 
 	</div>
-	<div class="checkbox" ng-repeat="singleNote in notes">
+	<div class="checkbox" ng-repeat="singleNote in notes"  style="padding-left:10%">
 			<input type="checkbox" class="notesCheckbox" ng-model="isChecked" ng-click="notes.removeNotes(singleNote)">
 			{{singleNote}}
 	</div>
